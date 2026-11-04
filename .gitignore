@@ -1,0 +1,14 @@
+# 민감 정보 (절대 올리지 않기)
+.env
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# 바인드 마운트 실습 중 스크립트가 만들고 바꾸는 파일
+bind-mount/site/
+
+# OS / 에디터 잡파일
+.DS_Store
+Thumbs.db
+.vscode/
