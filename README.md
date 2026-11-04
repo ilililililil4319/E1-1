@@ -356,22 +356,23 @@ E1-1/
 
 ### 9-1. 전체 진행 흐름
 
-**설명:** 스크립트 실행(C~J)이 로그를 자동으로 만들고, 대화형 실습과 브라우저 접속(K)은 스크린샷으로 보완한 뒤, 모두 GitHub 에 커밋한다.
+**설명:** ①·② 의 스크립트 실행(C~J)이 로그를 자동으로 만들고, 대화형 실습과 브라우저 접속(K)은 스크린샷으로 보완한 뒤, 모두 GitHub 에 커밋한다.
 
 ```mermaid
-flowchart LR
-    A["미션 분석<br/>저장소 생성"] --> B["폴더 구조·스크립트<br/>Dockerfile 작성"]
-    B --> C["00 실행 환경"]
-    C --> D["01 터미널"]
-    D --> E["02 권한"]
-    E --> F["03 Docker 점검"]
-    F --> G["04 운영·컨테이너"]
-    G --> H["05 빌드·포트 매핑"]
-    H --> I["06 바인드 마운트"]
-    I --> J["07 볼륨"]
-    J --> K["대화형 실습·브라우저<br/>(스크린샷)"]
-    K --> L["08 Git · 09 Compose"]
-    L --> M["README 작성<br/>git push"]
+flowchart TB
+    subgraph R1["① 준비"]
+        direction LR
+        A["미션 분석<br/>저장소 생성"] --> B["폴더 구조·스크립트<br/>Dockerfile 작성"] --> C["00 실행 환경"] --> D["01 터미널"] --> E["02 권한"]
+    end
+    subgraph R2["② Docker 실습"]
+        direction LR
+        F["03 Docker 점검"] --> G["04 운영·컨테이너"] --> H["05 빌드·포트 매핑"] --> I["06 바인드 마운트"] --> J["07 볼륨"]
+    end
+    subgraph R3["③ 증거 보완·마무리"]
+        direction LR
+        K["대화형 실습·브라우저<br/>(스크린샷)"] --> L["08 Git · 09 Compose"] --> M["README 작성<br/>git push"]
+    end
+    R1 --> R2 --> R3
 ```
 
 ### 9-2. 스크립트 한 줄이 로그가 되는 과정
@@ -588,6 +589,8 @@ hi                                                                 # 데이터 �
 ## 13. 로컬 실행 방법
 
 자세한 설치 방법은 [`docs/SETUP.md`](docs/SETUP.md) 를 참고하세요.
+
+- **Windows (WSL2 + Docker Desktop) 단계별 가이드 W1~W12:** [바로 가기](docs/SETUP.md#windows-wsl2--docker-desktop--처음부터-순서대로)
 
 ### 내 PC (Docker 설치 + 실행된 상태)
 
