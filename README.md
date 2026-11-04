@@ -34,49 +34,59 @@ E1-1/
 
 ## 3. 실행 환경
 
-> `./scripts/00_env.sh` 실행 결과([docs/logs/00_env.md](docs/logs/00_env.md))를 보고 채우기
+교육장 PC(Windows)에 Docker와 WSL이 없어서, 모든 실습은 **GitHub Codespaces(클라우드 Ubuntu + Docker + 브라우저 VSCode)** 에서 수행했습니다. (자세한 경위: [트러블슈팅 9-1](#9-1-교육장-pc에서-docker-명령을-찾을-수-없음))
 
-| 항목 | 값 |
-| --- | --- |
-| OS | (예: macOS 15.x, arm64) |
-| Shell | (예: zsh 5.9) |
-| Terminal | (예: Apple_Terminal / vscode) |
-| Docker | (예: Docker version 28.x, OrbStack) |
-| Git | (예: git version 2.x) |
+| 항목 | 값 | 근거 |
+| --- | --- | --- |
+| 작업 환경 | GitHub Codespaces (교육장 Windows PC의 브라우저로 접속) | |
+| OS | Ubuntu 24.04.5 LTS (x86_64) | [00_env.md](docs/logs/00_env.md) |
+| Shell | GNU bash 5.2.21 | [00_env.md](docs/logs/00_env.md) |
+| Terminal | VSCode 통합 터미널 (`TERM_PROGRAM=vscode`) | [00_env.md](docs/logs/00_env.md) |
+| Docker | Docker version 29.9.2-2 (Server 29.9.2-2) | [03_docker_check.md](docs/logs/03_docker_check.md) |
+| Git | git version 2.56.0 | [00_env.md](docs/logs/00_env.md) |
 
 ## 4. 빠른 재현 방법
 
 세팅 방법은 [docs/SETUP.md](docs/SETUP.md) 를 참고하세요.
 
+방법 1) 내 PC (Docker 설치 + 실행된 상태)
+
 ```bash
 git clone https://github.com/ilililililil4319/E1-1.git
 cd E1-1
-# OrbStack(또는 Docker Desktop) 실행 후
-./scripts/run_all.sh        # 00~07 실행, 결과는 docs/logs/ 에 저장
-./scripts/08_git.sh         # Git 설정 확인
-./scripts/09_compose.sh     # (보너스)
+bash scripts/run_all.sh        # 00~07 실행, 결과는 docs/logs/ 에 저장
+bash scripts/08_git.sh         # Git 설정 확인
+bash scripts/09_compose.sh     # (보너스)
 ```
 
+방법 2) 설치 없이 GitHub Codespaces (이 과제를 수행한 방법)
+
+1. 저장소 페이지 → `<> Code` → `Codespaces` → `Create codespace on main`
+2. 브라우저에 VSCode가 열리면 아래 터미널에서 위와 같은 `bash scripts/...` 명령 실행
+3. 웹 서버 접속은 `포트` 탭의 전달된 주소(`...-8080.app.github.dev`)로 확인
+
 주의 (개인 PC 의존성):
+- Windows에서 올린 파일은 실행 권한(x)이 빠질 수 있어 `./scripts/...` 대신 `bash scripts/...` 로 실행합니다.
 - 터미널 실습 폴더는 `~/codyssey/practice` 이며, `~` 는 PC마다 다른 홈 폴더로 바뀝니다.
 - 포트 8080, 8081, 8082, 8090 을 사용합니다. 이미 쓰는 포트가 있으면 스크립트의 숫자를 바꾸세요.
 - Windows 는 WSL2 사용을 권장합니다 ([SETUP.md](docs/SETUP.md#windows)).
 
 ## 5. 수행 체크리스트
 
-- [ ] 터미널 기본 조작 및 폴더 구성
-- [ ] 권한 변경 실습 (파일 1, 디렉토리 1)
-- [ ] Docker 설치 / 점검
-- [ ] Docker 기본 운영 명령 (images, ps, logs, stats)
-- [ ] hello-world 실행
-- [ ] ubuntu 컨테이너 진입 + attach / exec 차이 관찰
-- [ ] Dockerfile 커스텀 이미지 빌드 / 실행
-- [ ] 포트 매핑 접속 (2회: 8080, 8081)
-- [ ] 바인드 마운트 반영
-- [ ] 볼륨 영속성
-- [ ] Git 설정 + VSCode GitHub 연동
-- [ ] 트러블슈팅 2건 작성
-- [ ] (보너스) Docker Compose 멀티 컨테이너 + 환경 변수
+- [x] 터미널 기본 조작 및 폴더 구성
+- [x] 권한 변경 실습 (파일 1, 디렉토리 1)
+- [x] Docker 점검 (Codespaces: `docker --version`, `docker info`)
+- [ ] Docker 직접 설치 / 점검 (집 PC Windows + Docker Desktop, 추가 예정)
+- [x] Docker 기본 운영 명령 (images, ps, logs, stats)
+- [x] hello-world 실행
+- [x] ubuntu 컨테이너 진입 + attach / exec 차이 관찰
+- [x] Dockerfile 커스텀 이미지 빌드 / 실행
+- [x] 포트 매핑 접속 (2회: 8080, 8081)
+- [x] 바인드 마운트 반영
+- [x] 볼륨 영속성
+- [x] Git 설정 + VSCode GitHub 연동
+- [x] 트러블슈팅 2건 이상 작성
+- [x] (보너스) Docker Compose 멀티 컨테이너 + 환경 변수
 
 ## 6. 수행 내용과 검증 방법
 
@@ -116,16 +126,20 @@ curl http://localhost:8080
 
 ### 6-2. 포트 매핑 접속 증거 (브라우저, 주소창 포함)
 
+Codespaces는 컨테이너의 `-p 8080:80`, `-p 8081:80` 으로 열린 호스트 포트를 `https://<코드스페이스 이름>-<포트>.app.github.dev` 주소로 전달합니다. 주소창의 `-8080`, `-8081` 이 호스트 포트 번호입니다. 같은 응답을 Codespaces 안에서 `curl http://localhost:8080` 으로도 확인했습니다([05_build_run.md](docs/logs/05_build_run.md)).
+
 ![8080 접속](docs/screenshots/port-8080.png)
 ![8081 접속](docs/screenshots/port-8081.png)
 
 ### 6-3. Git / VSCode GitHub 연동 증거
 
+`git config --list` 결과는 [08_git.md](docs/logs/08_git.md) 에 있습니다 (`user.name`, `user.email`, `init.defaultbranch=main`). 아래는 VSCode(Codespaces)에 GitHub 계정으로 로그인된 화면이며, 이 저장소의 커밋과 push도 이 연동으로 수행했습니다.
+
 ![VSCode GitHub 연동](docs/screenshots/vscode-github.png)
 
-## 7. 직접 해야 하는 실습 (대화형, 스크린샷 필요)
+## 7. 대화형 실습 (스크린샷)
 
-스크립트로 자동화할 수 없는 부분입니다. 명령과 결과가 함께 보이게 캡처해서 `docs/screenshots/` 에 저장하세요.
+대화형(`-it`) 실습은 스크립트로 자동화할 수 없어서 직접 입력하고 화면을 캡처했습니다.
 
 ### 7-1. ubuntu 컨테이너 진입
 
@@ -152,7 +166,10 @@ exit
 docker ps -a                      # → Exited
 ```
 
-![attach vs exec](docs/screenshots/attach-exec.png)
+![attach vs exec 1](docs/screenshots/attach-exec-1.png)
+![attach vs exec 2](docs/screenshots/attach-exec-2.png)
+
+관찰 결과: exec로 들어갔다 `exit` 한 뒤 `docker ps` 에서 `my-ubuntu` 는 **Up** 이었고, attach로 들어갔다 `exit` 한 뒤 `docker ps -a` 에서는 **Exited (0)** 이었습니다. exec 방식은 [04_docker_ops.md](docs/logs/04_docker_ops.md) 의 `obs-ubuntu` 실험에서도 같은 결과를 확인했습니다.
 
 관찰 정리:
 
@@ -179,21 +196,41 @@ docker ps -a                      # → Exited
 
 ## 9. 트러블슈팅
 
-> 실습하면서 **실제로 겪은 문제**로 2건 이상 작성하세요. 아래 형식을 사용합니다.
+실습 중 실제로 겪은 문제입니다. (문제 → 원인 가설 → 확인 → 해결/대안)
 
-### 9-1. (문제 제목)
+### 9-1. 교육장 PC에서 docker 명령을 찾을 수 없음
 
-- 문제: (어떤 명령에서 어떤 오류 메시지가 났는지)
-- 원인 가설: (왜 그랬을 것 같은지)
-- 확인: (가설을 확인한 명령과 결과)
-- 해결 / 대안: (어떻게 고쳤는지)
-
-### 9-2. (문제 제목)
-
-- 문제:
-- 원인 가설:
+- 문제: 경남대 교육장에서 작업하다가 봉암동 교육장으로 옮겨 작업했다. 봉암동 교육장 PC의 PowerShell에서 `docker run ...` 을 실행하자 `'docker' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다 (CommandNotFoundException)` 오류가 났다.
+- 원인 가설: 이 PC(Windows)에 Docker가 설치되어 있지 않거나, 리눅스 환경(WSL)이 없을 것이다.
 - 확인:
+  - `PS C:\Users\...` 프롬프트 → Windows PowerShell 환경
+  - `docker --version` → 같은 CommandNotFoundException (Docker 미설치)
+  - `wsl -l -v` → `Linux용 Windows 하위 시스템 설치되어 있지 않습니다` (WSL 미설치)
 - 해결 / 대안:
+  - 선택한 방법: **GitHub Codespaces** 로 전환. 설치 없이 브라우저에서 Ubuntu + Docker + VSCode 를 바로 쓸 수 있고, `chmod` 권한 실습도 진짜 리눅스에서 정상 동작한다.
+  - 다른 대안: Windows에 Docker Desktop(+ WSL2) 설치. 관리자 권한과 재부팅이 필요할 수 있어 공용 PC에서는 운영진 허가가 필요하다. 또한 Windows 폴더(NTFS)에서는 `chmod` 가 제대로 반영되지 않아 권한 실습은 WSL/컨테이너 안에서 해야 한다.
+  - 공용 PC에 WSL 설치 안내가 떴을 때는 `ESC` 로 취소했다(관리자 권한·재부팅 필요).
+
+### 9-2. 대화형 컨테이너에 여러 줄을 붙여 넣었더니 명령이 실행되지 않음
+
+- 문제: `docker run -it --name my-ubuntu ubuntu:24.04 bash` 와 `ls`, `echo`, `exit` 를 한꺼번에 붙여 넣었더니, 프롬프트만 `root@0defc4e8da2c:/#` 로 바뀌고 `ls`, `echo` 결과가 나오지 않았다.
+- 원인 가설: 컨테이너의 bash 가 준비되기 **전에** 나머지 줄이 입력되어 컨테이너 안으로 전달되지 않았다.
+- 확인: 컨테이너 프롬프트에서 `ls` 를 한 줄씩 다시 입력하자 `bin boot dev etc ...` 목록이 정상 출력됐다.
+- 해결 / 대안: 대화형(`-it`) 컨테이너에서는 프롬프트가 바뀐 것을 확인한 뒤 **한 줄씩** 입력한다. 여러 명령을 한 번에 실행하려면 비대화형으로 `docker run --rm ubuntu:24.04 bash -c 'ls && echo hi'` 처럼 쓴다.
+
+### 9-3. 공용 PC 폴더에서 push 하자 403 거부 (다른 사람 저장소·계정)
+
+- 문제: 교육장 PC 바탕화면 폴더에서 커밋 후 `git push` 하자 `remote: Permission to vlfgl/M1-1.git denied to love4xox.` / `error: 403` 이 났다. 그래서 Codespaces에는 `README.md` 만 있었다(`ls` 결과).
+- 원인 가설: 그 폴더가 내 저장소가 아니라 이전 사용자의 저장소에 연결되어 있고, PC에 다른 사람의 GitHub 로그인이 남아 있다.
+- 확인: 오류 메시지에 내 저장소(`ilililililil4319/E1-1`)가 아닌 `vlfgl/M1-1` 과 다른 계정(`love4xox`)이 표시됨.
+- 해결 / 대안: 그 폴더의 커밋은 `git reset HEAD~1` 로 되돌리고 더 이상 사용하지 않았다. 내 GitHub 계정으로 연결된 Codespaces에 파일을 직접 올려 커밋·push 했다. 공용 PC를 쓸 때는 `git remote -v` 로 연결된 저장소를 먼저 확인하고, 작업 후 로그아웃해야 한다.
+
+### 9-4. 스크린샷 파일 이름이 `port-8080.png.png` 로 저장됨
+
+- 문제: README 에서 `port-8080.png` 이미지가 보이지 않았다.
+- 원인 가설: 저장할 때 이름에 `.png` 를 직접 쓰면서 확장자가 두 번 붙었다.
+- 확인: 탐색기에서 `port-8080.png.png` 로 표시됨.
+- 해결 / 대안: `mv docs/screenshots/port-8080.png.png docs/screenshots/port-8080.png` 로 이름을 바꿨다.
 
 ## 10. 보안 / 개인정보
 
