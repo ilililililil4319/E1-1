@@ -86,7 +86,14 @@ bash scripts/09_compose.sh     # (보너스)
 - [x] 볼륨 영속성
 - [x] Git 설정 + VSCode GitHub 연동
 - [x] 트러블슈팅 2건 이상 작성
-- [x] (보너스) Docker Compose 멀티 컨테이너 + 환경 변수
+
+보너스 과제 (선택) — 자세한 내용: [6-4. 보너스 과제](#6-4-보너스-과제)
+
+- [x] 보너스 1. Docker Compose 기초 (`docker-compose.yml` 작성 후 Compose 로 실행)
+- [x] 보너스 2. Docker Compose 멀티 컨테이너 (web + checker, 컨테이너 간 통신 확인)
+- [x] 보너스 3. Compose 운영 명령어 (`up`, `ps`, `logs`, `down`)
+- [x] 보너스 4. 환경 변수 활용 (`APP_ENV` 모드, `WEB_PORT` 포트 변경)
+- [ ] 보너스 5. GitHub SSH 키 설정 (집 PC 에서 진행 예정)
 
 ## 6. 수행 내용과 검증 방법
 
@@ -136,6 +143,20 @@ Codespaces는 컨테이너의 `-p 8080:80`, `-p 8081:80` 으로 열린 호스트
 `git config --list` 결과는 [08_git.md](docs/logs/08_git.md) 에 있습니다 (`user.name`, `user.email`, `init.defaultbranch=main`). 아래는 VSCode(Codespaces)에 GitHub 계정으로 로그인된 화면이며, 이 저장소의 커밋과 push도 이 연동으로 수행했습니다.
 
 ![VSCode GitHub 연동](docs/screenshots/vscode-github.png)
+
+### 6-4. 보너스 과제
+
+설정 파일: [compose/docker-compose.yml](compose/docker-compose.yml) / 실행 스크립트: [scripts/09_compose.sh](scripts/09_compose.sh) / 로그: [09_compose.md](docs/logs/09_compose.md)
+
+| # | 과제 | 수행 내용 | 확인 결과 |
+| --- | --- | --- | --- |
+| 1 | Compose 기초 | `docker run` 으로 길게 치던 이미지·포트·환경 변수 설정을 `docker-compose.yml` 에 문서화하고 `docker compose up -d --build` 로 실행 | `web` 서비스가 `app/Dockerfile` 로 빌드되어 실행됨 |
+| 2 | 멀티 컨테이너 | `web`(내 nginx 이미지) + `checker`(alpine) 2개 서비스 실행. checker 가 서비스 이름 `http://web/` 으로 접속 | `docker compose logs checker` 에 내 페이지 HTML 출력 → 컨테이너 간 네트워크 통신 성공 (서비스 디스커버리) |
+| 3 | 운영 명령어 | `up` → `ps` → `logs` → `down` → `ps` | `ps`: 두 서비스 Up, web 은 `(healthy)` / `down` 후 `ps`: 목록 비어 있음 |
+| 4 | 환경 변수 | `APP_ENV=dev WEB_PORT=8090 docker compose up -d` 로 모드와 호스트 포트를 바깥에서 주입 | `docker compose exec web printenv APP_ENV` → `dev`, `curl http://localhost:8090` 응답 성공 |
+| 5 | SSH 키 | 미수행 (이번에는 HTTPS 방식으로 push) | 집 PC 에서 `ssh-keygen` → 공개키(`.pub`) 등록 → `ssh -T git@github.com` 으로 진행 예정 |
+
+배운 점: 실행 명령이 파일(`docker-compose.yml`)로 문서화되면 누구나 `up` 한 줄로 같은 구성을 재현할 수 있고, 설정값(포트·모드)은 환경 변수로 분리해 코드를 고치지 않고 바꿀 수 있다.
 
 ## 7. 대화형 실습 (스크린샷)
 
