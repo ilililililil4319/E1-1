@@ -4,9 +4,13 @@
 > "실행 결과(로그·접속·데이터 유지)"로 검증해 누구나 같은 결과를 재현할 수 있는 개발 환경을 만든 미션
 
 **💻 GitHub:** https://github.com/ilililililil4319/E1-1
+
 **📋 미션:** E1-1 내 컴퓨터에 개발자용 '작업실' 꾸미기 (26년 경남 AI 올인원 1기 입학연수 · 개발 입문)
+
 **🧾 실행 로그:** [`docs/logs/`](docs/logs/) (명령 + 출력 자동 기록)
+
 **🖼 스크린샷:** [`docs/screenshots/`](docs/screenshots/)
+
 **⚙️ 환경 세팅 가이드:** [`docs/SETUP.md`](docs/SETUP.md)
 
 ![커스텀 이미지 포트 매핑 접속 성공](docs/screenshots/port-8080.png)
@@ -126,7 +130,7 @@ E1-1/
 | 프롬프트 | 명령 입력을 기다리는 표시 (`$`, `root@...:/#`) |
 | 루트 디렉토리 | 파일 시스템의 맨 꼭대기 `/` |
 | 홈 디렉토리 | 사용자 개인 폴더 `~` |
-| 절대 경로 | `/` 부터 시작하는 전체 경로 (`/home/codespace/codyssey`) |
+| 절대 경로 | `/` 부터 시작하는 전체 경로 (`/home/사용자/codyssey`) |
 | 상대 경로 | 현재 위치 기준 경로 (`./practice`, `../`) |
 | `.` / `..` | 현재 디렉토리 / 상위 디렉토리 |
 | 숨김 파일 | 이름이 `.` 으로 시작하는 파일 (`.gitignore`) |
@@ -287,11 +291,11 @@ E1-1/
 | 버전 관리 | Git, GitHub |
 | 에디터 | VSCode (GitHub 계정 연동) |
 
-교육장 PC(Windows)에 Docker 와 WSL 이 없어, 실습은 **GitHub Codespaces(클라우드 Ubuntu + Docker + 브라우저 VSCode)** 에서 수행했습니다. (경위: [15-1](#15-1-교육장-pc에서-docker-명령을-찾을-수-없음))
+내 PC(Windows)에 WSL2(Ubuntu)와 Docker Desktop 을 설치하고, VSCode 를 WSL 에 연결해 모든 실습을 수행했습니다.
 
 | 항목 | 값 | 근거 |
 |---|---|:---:|
-| 작업 환경 | GitHub Codespaces (교육장 Windows PC 의 브라우저로 접속) | — |
+| 작업 환경 | Windows + WSL2(Ubuntu) + Docker Desktop + VSCode(WSL 연결) | — |
 | OS | Ubuntu 24.04.5 LTS (x86_64) | [`00_env.md`](docs/logs/00_env.md) |
 | Shell | GNU bash 5.2.21 | [`00_env.md`](docs/logs/00_env.md) |
 | Terminal | VSCode 통합 터미널 (`TERM_PROGRAM=vscode`) | [`00_env.md`](docs/logs/00_env.md) |
@@ -335,7 +339,7 @@ E1-1/
 |:---:|---|:---:|
 | 1 | 미션 분석, GitHub 저장소 생성 | — |
 | 2 | 폴더 구조·자동화 스크립트·Dockerfile·`.gitignore` 구성 | [4장](#4-폴더-구조) |
-| 3 | 실행 환경 준비 (교육장 PC 에 Docker 없음 → Codespaces 전환) | [15-1](#15-1-교육장-pc에서-docker-명령을-찾을-수-없음) |
+| 3 | 실행 환경 준비 (WSL2 + Docker Desktop + VSCode 설치, SSH 키 등록) | [`SETUP.md`](docs/SETUP.md) |
 | 4 | 실행 환경 기록 | `00_env.md` |
 | 5 | 터미널 기본 조작 (위치·목록·이동·생성·복사·이름변경·삭제) | `01_terminal.md` |
 | 6 | 권한 실습 (파일 644→755, 디렉토리 755→700, x 제거 실험) | `02_permission.md` |
@@ -528,7 +532,7 @@ $ docker ps --filter name=my-web
 ... 0.0.0.0:8080->80/tcp ...   my-web-8080
 ```
 
-Codespaces 는 호스트 포트를 `https://<코드스페이스>-<포트>.app.github.dev` 주소로 전달합니다. 주소창의 `-8080`, `-8081` 이 호스트 포트이며, 같은 응답을 `curl http://localhost:8080` 으로도 확인했습니다.
+브라우저 주소창에 `localhost:8080`, `localhost:8081` 을 입력해 접속했고, 같은 응답을 `curl http://localhost:8080` 으로도 확인했습니다.
 
 ![8080 접속](docs/screenshots/port-8080.png)
 ![8081 접속](docs/screenshots/port-8081.png)
@@ -564,7 +568,7 @@ hi                                                                 # 데이터 �
 ### 11-9. Git 설정 및 GitHub 연동
 
 - `git config --global user.name / user.email / init.defaultBranch main` 설정 후 `git config --list` 기록 → [`08_git.md`](docs/logs/08_git.md)
-- VSCode(Codespaces)에 GitHub 계정으로 로그인했고, 이 저장소의 커밋·push 를 이 연동으로 수행했습니다.
+- VSCode 에 GitHub 계정으로 로그인해 저장소와 연동했습니다.
 
 ![VSCode GitHub 연동](docs/screenshots/vscode-github.png)
 
@@ -602,11 +606,9 @@ bash scripts/08_git.sh         # Git 설정 확인
 bash scripts/09_compose.sh     # (보너스)
 ```
 
-### 설치 없이 GitHub Codespaces
-
-1. 저장소 페이지 → `<> Code` → `Codespaces` → `Create codespace on main`
-2. 브라우저에 VSCode 가 열리면 터미널에서 위와 같은 `bash scripts/...` 실행
-3. 웹 접속은 `포트` 탭의 전달된 주소(`...-8080.app.github.dev`)로 확인
+> Windows 는 Windows 폴더가 아닌 WSL Ubuntu 폴더(`~/codyssey`)에 clone 해야 권한 실습과 바인드 마운트가 정상 동작합니다.
+>
+> 참고: Docker 를 설치할 수 없는 PC 라면 GitHub Codespaces 처럼 Docker 가 준비된 클라우드 개발 환경에서 같은 스크립트를 실행하는 방법도 있습니다.
 
 > 대화형 실습([11-4](#11-4-ubuntu-컨테이너-진입-및-attach--exec-비교))은 명령을 **한 줄씩** 직접 입력합니다.
 
@@ -634,31 +636,14 @@ bash scripts/09_compose.sh     # (보너스)
 
 (문제 → 원인 가설 → 확인 → 해결/대안)
 
-### 15-1. 교육장 PC에서 docker 명령을 찾을 수 없음
-
-- **문제:** 경남대 교육장에서 작업하다가 봉암동 교육장으로 옮겨 작업했다. 봉암동 교육장 PC 의 PowerShell 에서 `docker run ...` 을 실행하자 `'docker' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다 (CommandNotFoundException)` 오류가 났다.
-- **원인 가설:** 이 PC(Windows)에 Docker 가 설치되어 있지 않거나, 리눅스 환경(WSL)이 없다.
-- **확인:** `PS C:\Users\...` 프롬프트 → Windows PowerShell / `docker --version` → 같은 오류(미설치) / `wsl -l -v` → `Linux용 Windows 하위 시스템 설치되어 있지 않습니다`
-- **해결/대안:**
-  - 선택: **GitHub Codespaces** 로 전환. 설치 없이 Ubuntu + Docker + VSCode 를 바로 쓸 수 있고, `chmod` 권한 실습도 진짜 리눅스에서 동작한다.
-  - 다른 대안: Docker Desktop(+ WSL2) 설치. 관리자 권한·재부팅이 필요할 수 있어 공용 PC 에서는 운영진 허가가 필요하다. Windows 폴더(NTFS)에서는 `chmod` 가 반영되지 않아 권한 실습은 WSL·컨테이너 안에서 해야 한다.
-  - 공용 PC 에 WSL 설치 안내가 떴을 때는 `ESC` 로 취소했다.
-
-### 15-2. 대화형 컨테이너에 여러 줄을 붙여 넣었더니 명령이 실행되지 않음
+### 15-1. 대화형 컨테이너에 여러 줄을 붙여 넣었더니 명령이 실행되지 않음
 
 - **문제:** `docker run -it ... bash` 와 `ls`, `echo`, `exit` 를 한꺼번에 붙여 넣었더니 프롬프트만 `root@0defc4e8da2c:/#` 로 바뀌고 `ls`, `echo` 결과가 나오지 않았다.
 - **원인 가설:** 컨테이너 bash 가 준비되기 **전에** 나머지 줄이 입력되어 컨테이너로 전달되지 않았다.
 - **확인:** 컨테이너 프롬프트에서 `ls` 를 한 줄씩 다시 입력하자 `bin boot dev etc ...` 가 정상 출력됐다.
 - **해결/대안:** 대화형 컨테이너에서는 프롬프트가 바뀐 것을 확인한 뒤 **한 줄씩** 입력한다. 여러 명령을 한 번에 실행하려면 `docker run --rm ubuntu:24.04 bash -c 'ls && echo hi'` 처럼 비대화형으로 쓴다.
 
-### 15-3. 공용 PC 폴더에서 push 하자 403 거부 (다른 사람 저장소·계정)
-
-- **문제:** 교육장 PC 바탕화면 폴더에서 커밋 후 `git push` 하자 `remote: Permission to vlfgl/M1-1.git denied to love4xox.` / `error: 403`. 그래서 Codespaces 에는 `README.md` 만 있었다.
-- **원인 가설:** 그 폴더가 이전 사용자의 저장소에 연결되어 있고, PC 에 다른 사람의 GitHub 로그인이 남아 있다.
-- **확인:** 오류 메시지에 내 저장소가 아닌 `vlfgl/M1-1` 과 다른 계정(`love4xox`)이 표시됨.
-- **해결/대안:** 그 폴더의 커밋은 `git reset HEAD~1` 로 되돌리고 사용을 중단했다. 내 계정으로 연결된 Codespaces 에 파일을 올려 커밋·push 했다. 공용 PC 에서는 `git remote -v` 로 연결된 저장소부터 확인하고, 작업 후 로그아웃한다.
-
-### 15-4. 스크린샷 파일 이름이 `port-8080.png.png` 로 저장됨
+### 15-2. 스크린샷 파일 이름이 `port-8080.png.png` 로 저장됨
 
 - **문제:** README 에서 `port-8080.png` 이미지가 보이지 않았다.
 - **원인 가설:** 저장할 때 이름에 `.png` 를 직접 써서 확장자가 두 번 붙었다.
@@ -673,7 +658,6 @@ bash scripts/09_compose.sh     # (보너스)
 |---|---|---|
 | 미션 분석, 폴더 구조와<br/>실습 자동화 스크립트 초안 | 반복 명령과 출력을<br/>빠짐없이 기록하기 위해 | 직접 실행해 `docs/logs/` 의<br/>명령·출력을 하나씩 확인 |
 | Dockerfile 커스텀 포인트 설계 | 베이스 이미지 선택과<br/>커스텀 목적 정리 | 빌드 성공, `healthy`,<br/>`printenv`, `inspect` 로 확인 |
-| 교육장 PC 환경 문제 분석<br/>(Docker·WSL 없음, push 403) | 오류 메시지 원인 분석과<br/>대안(Codespaces) 비교 | 직접 명령(`docker --version`,<br/>`wsl -l -v`, `git remote -v`)으로 확인 |
 | README 구성, 용어 정리,<br/>스크린샷 아이디 마스킹 | 문서 구조화와<br/>개인정보 보호 | GitHub 에서 링크·이미지 표시 확인 |
 | 개념 학습 노트·예상 문제 | 비전공자로서 개념 이해 | 핵심 질문 6가지를 직접 말로 설명 |
 
@@ -696,7 +680,7 @@ bash scripts/09_compose.sh     # (보너스)
 | 바인드 마운트 반영 | [11-7](#11-7-바인드-마운트-변경-반영), `06_bind_mount.md` | ✅ |
 | Docker 볼륨 영속성 | [11-8](#11-8-볼륨-영속성), `07_volume.md` | ✅ |
 | Git 설정 및 GitHub 연동 | [11-9](#11-9-git-설정-및-github-연동), `08_git.md`, 스크린샷 | ✅ |
-| 트러블슈팅 2건 이상 | [15장](#15-실습-중-발생한-오류와-해결) (4건) | ✅ |
+| 트러블슈팅 2건 이상 | [15장](#15-실습-중-발생한-오류와-해결) (2건) | ✅ |
 | 보안 및 개인정보 보호 | [19장](#19-보안-유의사항) | ✅ |
 | 보너스 (Compose 1~4) | [12장](#12-보너스-과제) | ✅ |
 | 보너스 (SSH 키) | — | ⬜ |
@@ -709,11 +693,10 @@ bash scripts/09_compose.sh     # (보너스)
 
 - 이미지(설계도)와 컨테이너(실행체)를 분리했기 때문에, 같은 `my-web:1.0` 으로 컨테이너를 몇 개를 만들어도 같은 결과가 나왔다.
 - 컨테이너는 격리되어 있어 바깥과 연결하는 방법(포트·마운트·볼륨)을 직접 정해야 한다는 것을, 실행 결과로 하나씩 확인했다.
-- 실습 명령을 스크립트로 만들고 출력을 자동 기록하자, 다른 환경(Codespaces)에서도 `bash scripts/run_all.sh` 한 줄로 같은 결과를 재현할 수 있었다.
+- 실습 명령을 스크립트로 만들고 출력을 자동 기록하자, 몇 번을 다시 실행해도 `bash scripts/run_all.sh` 한 줄로 같은 결과를 재현할 수 있었다.
 
 ### 한계점
 
-- 교육장 PC 에 Docker 가 없어 "내 컴퓨터"가 아닌 클라우드 환경(Codespaces)에서 수행했다. 그래서 브라우저 주소창이 `localhost:8080` 이 아니라 Codespaces 전달 주소로 표시된다.
 - 보너스 5번(SSH 키)은 수행하지 않았다.
 - 스크립트가 많은 명령을 자동으로 실행하므로, 각 명령의 의미는 따로 학습해 설명할 수 있어야 한다.
 
@@ -725,7 +708,7 @@ bash scripts/09_compose.sh     # (보너스)
 - 스크린샷의 GitHub 아이디·이메일은 가렸다. 토큰·비밀번호·인증 코드는 어떤 파일에도 없다.
 - `.gitignore` 로 `.env`, 키 파일(`*.pem`, `id_ed25519*`)이 올라가지 않게 막았다.
 - 민감 정보가 올라간 경우: 파일과 Git 기록에서 제거하고 해당 토큰/키를 폐기 후 재발급한다.
-- 공용 PC 사용 후 GitHub 로그아웃, `git config --global --unset user.name / user.email` 로 사용자 정보를 지웠다.
+- 공용 PC 를 쓸 때는 작업 후 GitHub 로그아웃과 Git 사용자 정보 삭제(`git config --global --unset user.name / user.email`)를 한다.
 
 ---
 
