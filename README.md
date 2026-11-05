@@ -80,6 +80,7 @@
 | 5 | Dockerfile 기반 웹 서버 | [`app/Dockerfile`](app/Dockerfile), [`app/site/`](app/site/), [`05_build_run.md`](docs/logs/05_build_run.md) |
 | 6 | 포트 매핑 접속 증거 | [11-6](#11-6-포트-매핑-접속) 스크린샷 2장 |
 | 7 | 바인드 마운트 + 볼륨 증거 | [`06_bind_mount.md`](docs/logs/06_bind_mount.md), [`07_volume.md`](docs/logs/07_volume.md) |
+| 7-1 | 포트 충돌 진단·해제 증거 | [`10_port_check.md`](docs/logs/10_port_check.md), [11-10](#11-10-포트-충돌-진단-및-해제) |
 | 8 | Git 설정 + GitHub/VSCode 연동 증거 | [`08_git.md`](docs/logs/08_git.md), [11-9](#11-9-git-설정-및-github-연동) 스크린샷 |
 
 ---
@@ -108,6 +109,7 @@ E1-1/
 │   ├── 07_volume.sh        #   볼륨 영속성
 │   ├── 08_git.sh           #   Git 설정 확인
 │   ├── 09_compose.sh       #   보너스 Compose
+│   ├── 10_port_check.sh    #   포트 충돌 진단·해제
 │   └── run_all.sh          #   00~07 한 번에 실행
 └── docs/
     ├── SETUP.md            # 환경 세팅 가이드 (Mac / Windows)
@@ -162,6 +164,7 @@ E1-1/
 | `ls -l` | 파일 권한 확인 (맨 앞 `-` 파일, `d` 디렉토리) |
 | `ls -ld` | 디렉토리 자체의 권한 확인 |
 | `chmod` | 권한 변경 (`chmod 755 파일`, `chmod u+x 파일`) |
+| 특수 권한 비트 | setuid(4000, 실행 시 소유자 권한), setgid(2000, 그룹 권한), sticky(1000, `/tmp` 처럼 내 파일만 지울 수 있게) |
 | `sudo` | 관리자(root) 권한으로 명령 실행 |
 | Permission denied | 권한이 없어서 거부됨 |
 
@@ -228,6 +231,9 @@ E1-1/
 | `-p 8080:80` | 호스트 8080 → 컨테이너 80 (순서: 호스트:컨테이너) |
 | localhost | 내 컴퓨터 자신 (127.0.0.1) |
 | port is already allocated | 호스트 포트가 이미 사용 중이라는 오류 |
+| `ss -ltnp` / `lsof -i :포트` | 포트를 점유한 프로세스(PID) 확인 |
+| `kill PID` | 프로세스 종료 (강제는 `kill -9`) |
+| 네트워크 네임스페이스 | 컨테이너마다 분리된 네트워크 공간 (그래서 포트 매핑이 필요) |
 | 바인드 마운트 | 호스트의 특정 폴더를 컨테이너에 연결 → 변경 즉시 반영 |
 | `-v $(pwd)/site:/usr/share/nginx/html` | 바인드 마운트 (호스트 경로:컨테이너 경로) |
 | 볼륨 | Docker 가 관리하는 저장 공간 → 컨테이너를 지워도 데이터 유지 |
@@ -436,6 +442,7 @@ flowchart LR
 
 ### 설계 노트
 
+- **네트워크 네임스페이스와 포트 포워딩:** 컨테이너는 자기만의 네트워크 공간(네트워크 네임스페이스)을 가져 호스트와 포트 번호가 분리된다. 그래서 `-p 8080:80` 은 "호스트 8080 으로 온 요청을 컨테이너 네임스페이스의 80 으로 전달(포워딩)하라"는 규칙이다.
 - **같은 이미지, 다른 호스트 포트:** 컨테이너 안의 포트(80)는 서로 격리되어 같아도 되지만, 호스트 포트는 겹치면 `port is already allocated` 오류가 난다. 그래서 8080, 8081 로 나눴다.
 - **`EXPOSE` 와 `-p` 는 다르다:** `EXPOSE 80` 은 "이 이미지는 80번을 쓴다"는 문서일 뿐이고, 실제 연결은 `docker run -p` 가 한다.
 - **바인드 마운트는 개발용, 볼륨은 데이터용:** 바인드 마운트는 호스트에서 파일을 고치면 재빌드 없이 바로 반영된다. 볼륨은 컨테이너를 지워도 남아 DB 같은 데이터 보관에 쓴다.
@@ -469,7 +476,7 @@ $ cd perm_dir
 cd: perm_dir: Permission denied
 ```
 
-디렉토리에서 x(들어가기 권한)를 빼자 소유자인데도 `cd` 가 거부되었습니다. → [`02_permission.md`](docs/logs/02_permission.md)
+파일은 실행 스크립트처럼 남도 읽고 실행할 수 있게 755 로, 디렉토리는 나만 들어갈 수 있게 700 으로 바꿔 보았습니다(개인 키·설정처럼 남이 보면 안 되는 폴더에 쓰는 값). 디렉토리에서 x(들어가기 권한)를 빼자 소유자인데도 `cd` 가 거부되었습니다. → [`02_permission.md`](docs/logs/02_permission.md)
 
 ### 11-3. Docker 설치·점검 및 운영 명령
 
@@ -583,8 +590,24 @@ hi                                                                 # 데이터 �
 - VSCode(WSL: Ubuntu 연결)에 GitHub 계정으로 로그인해 저장소와 연동했습니다.
 - SSH 키(ed25519)를 만들어 **공개키만** GitHub 에 등록하고, `git@github.com:` 주소로 clone·push 했습니다 (`remote.origin.url=git@github.com:ilililililil4319/E1-1.git`).
 
+- push 결과는 GitHub 커밋 기록에서 확인할 수 있습니다: [커밋 목록](https://github.com/ilililililil4319/E1-1/commits/main) (예: `d9fb64d..cd074d7  main -> main`)
+
 ![VSCode GitHub 연동](docs/screenshots/vscode-github.png)
 ![SSH 연결 확인](docs/screenshots/ssh-github.png)
+
+### 11-10. 포트 충돌 진단 및 해제
+
+같은 호스트 포트를 두 프로그램이 동시에 쓸 수 없습니다. 충돌을 일부러 만들고 **확인 → 원인 찾기 → 해제 → 재확인** 순서로 처리했습니다. → [`10_port_check.md`](docs/logs/10_port_check.md) · 실행: `bash scripts/10_port_check.sh`
+
+| 단계 | 컨테이너가 포트를 쓰는 경우 | 일반 프로세스가 포트를 쓰는 경우 |
+|---|---|---|
+| ① 증상 | `docker run -p 8085:80 ...` → `port is already allocated` | 서버 실행 → `Address already in use` |
+| ② 누가 쓰는지 확인 | `docker ps --filter publish=8085`<br/>`docker port <컨테이너>` | `ss -ltnp \| grep :8099`<br/>(또는 `lsof -i :8099`) → PID 확인 |
+| ③ 해제 | `docker stop <컨테이너>` → `docker rm <컨테이너>` | `kill <PID>` (응답이 없을 때만 `kill -9 <PID>`) |
+| ④ 재확인 | 다시 `docker run` → `curl -s -o /dev/null -w '%{http_code}' localhost:8085` → `200` | `ss -ltnp \| grep :8099` 결과 없음 |
+
+- **Windows (PowerShell) 에서는:** `netstat -ano | findstr :8080` 으로 PID 를 찾고 `taskkill /PID <PID>` 로 종료합니다. Docker Desktop 이 연 포트라면 프로세스를 죽이지 말고 해당 컨테이너를 `docker stop` 합니다.
+- **안전한 해제 원칙:** 무엇이 쓰고 있는지 먼저 확인하고, 내가 띄운 컨테이너·프로세스만 정상 종료(`stop`, `kill`)한다. 모르는 프로세스는 강제 종료하지 않고 다른 포트(예: 8081)를 쓴다.
 
 ---
 
@@ -618,6 +641,7 @@ cd E1-1
 bash scripts/run_all.sh        # 00~07 실행 → docs/logs/ 에 저장
 bash scripts/08_git.sh         # Git 설정 확인
 bash scripts/09_compose.sh     # (보너스)
+bash scripts/10_port_check.sh  # 포트 충돌 진단·해제
 ```
 
 > Windows 는 Windows 폴더가 아닌 WSL Ubuntu 폴더(`~/codyssey`)에 clone 해야 권한 실습과 바인드 마운트가 정상 동작합니다.
@@ -641,6 +665,7 @@ bash scripts/09_compose.sh     # (보너스)
 | 8080, 8081 | 커스텀 이미지 포트 매핑 2회 |
 | 8082 | 바인드 마운트 실습 |
 | 8090 | 보너스 Compose |
+| 8085, 8099 | 포트 충돌 진단 실습 |
 
 이미 사용 중인 포트가 있으면 스크립트의 숫자 또는 `WEB_PORT` 를 바꿔 실행합니다.
 
@@ -719,6 +744,7 @@ bash scripts/09_compose.sh     # (보너스)
 | 컨테이너 실행 실습<br/>(hello-world, ubuntu, attach/exec) | [11-4](#11-4-ubuntu-컨테이너-진입-및-attach--exec-비교), 스크린샷 3장 | ✅ |
 | 기존 Dockerfile 기반 커스텀 이미지 | [11-5](#11-5-dockerfile-커스텀-이미지-방식-a-웹-서버-베이스--정적-콘텐츠-교체), `app/Dockerfile` | ✅ |
 | 포트 매핑 및 접속 증거 | [11-6](#11-6-포트-매핑-접속), 스크린샷 2장 | ✅ |
+| 포트 충돌 진단 및 해제<br/>(점유 프로세스 확인·해제) | [11-10](#11-10-포트-충돌-진단-및-해제), `10_port_check.md` | ✅ |
 | 바인드 마운트 반영 | [11-7](#11-7-바인드-마운트-변경-반영), `06_bind_mount.md` | ✅ |
 | Docker 볼륨 영속성 | [11-8](#11-8-볼륨-영속성), `07_volume.md` | ✅ |
 | Git 설정 및 GitHub 연동 | [11-9](#11-9-git-설정-및-github-연동), `08_git.md`, 스크린샷 | ✅ |
