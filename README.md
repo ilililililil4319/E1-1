@@ -369,21 +369,21 @@ E1-1/
 
 ### 9-1. 전체 진행 흐름
 
-**설명:** ①·② 의 스크립트 실행(C~J)이 로그를 자동으로 만들고, 대화형 실습과 브라우저 접속(K)은 스크린샷으로 보완한 뒤, 모두 GitHub 에 커밋한다.
+**설명:** ①·② 의 스크립트 실행(00~07)과 ③ 의 08~10 이 로그를 자동으로 만들고, 대화형 실습과 브라우저 접속(K)은 스크린샷으로 보완한 뒤, 모두 GitHub 에 커밋한다.
 
 ```mermaid
 flowchart TB
     subgraph R1["① 준비"]
         direction LR
-        A["미션 분석<br/>저장소 생성"] --> B["폴더 구조·스크립트<br/>Dockerfile 작성"] --> C["00 실행 환경"] --> D["01 터미널"] --> E["02 권한"]
+        A["미션 분석<br/>저장소 생성"] --> B["폴더 구조<br/>스크립트<br/>Dockerfile"] --> C["00<br/>실행 환경"] --> D["01<br/>터미널"] --> E["02<br/>권한"]
     end
     subgraph R2["② Docker 실습"]
         direction LR
-        F["03 Docker 점검"] --> G["04 운영·컨테이너"] --> H["05 빌드·포트 매핑"] --> I["06 바인드 마운트"] --> J["07 볼륨"]
+        F["03<br/>Docker 점검"] --> G["04<br/>운영·컨테이너"] --> H["05<br/>빌드·포트"] --> I["06<br/>바인드 마운트"] --> J["07<br/>볼륨"]
     end
     subgraph R3["③ 증거 보완·마무리"]
         direction LR
-        K["대화형 실습·브라우저<br/>(스크린샷)"] --> L["08 Git · 09 Compose"] --> M["README 작성<br/>git push"]
+        K["대화형 실습<br/>브라우저 접속<br/>(스크린샷)"] --> L["08 Git<br/>09 Compose"] --> P["10<br/>포트 충돌"] --> M["README 작성<br/>git push"]
     end
     R1 --> R2 --> R3
 ```
@@ -419,7 +419,7 @@ sequenceDiagram
 flowchart LR
     subgraph HOST["호스트 (내 컴퓨터)"]
         BR["브라우저 / curl"]
-        DIR["bind-mount/site/<br/>(호스트 폴더)"]
+        DIR["bind-mount/site<br/>(호스트 폴더)"]
         VOL[("mydata<br/>Docker 볼륨")]
     end
     subgraph C1["my-web-8080"]
@@ -431,7 +431,7 @@ flowchart LR
     subgraph C3["bind-test"]
         H3["/usr/share/nginx/html"]
     end
-    subgraph C4["vol-test → 삭제 후 vol-test2"]
+    subgraph C4["vol-test / vol-test2"]
         D4["/data"]
     end
     BR -- "-p 8080:80" --> N1
