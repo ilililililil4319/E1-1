@@ -286,21 +286,24 @@ E1-1/
 | 구분 | 사용 기술 |
 |---|---|
 | CLI | bash, coreutils (`ls`, `cp`, `mv`, `chmod` …), `curl` |
-| 컨테이너 | Docker Engine, Docker Compose, Dockerfile |
+| 컨테이너 | Docker Desktop (WSL2 백엔드), Docker Engine, Docker Compose, Dockerfile |
 | 웹 서버 | NGINX (`nginx:1.27-alpine`) |
 | 버전 관리 | Git, GitHub |
-| 에디터 | VSCode (GitHub 계정 연동) |
+| 리눅스 환경 | WSL2 (Windows Subsystem for Linux) + Ubuntu |
+| 에디터 | VSCode + WSL 확장 (GitHub 계정 연동) |
+| 인증 | SSH 키 (ed25519) |
 
 내 PC(Windows)에 WSL2(Ubuntu)와 Docker Desktop 을 설치하고, VSCode 를 WSL 에 연결해 모든 실습을 수행했습니다.
 
 | 항목 | 값 | 근거 |
 |---|---|:---:|
 | 작업 환경 | Windows + WSL2(Ubuntu) + Docker Desktop + VSCode(WSL 연결) | — |
-| OS | Ubuntu 24.04.5 LTS (x86_64) | [`00_env.md`](docs/logs/00_env.md) |
-| Shell | GNU bash 5.2.21 | [`00_env.md`](docs/logs/00_env.md) |
-| Terminal | VSCode 통합 터미널 (`TERM_PROGRAM=vscode`) | [`00_env.md`](docs/logs/00_env.md) |
-| Docker | Docker version 29.9.2-2 (Server 29.9.2-2) | [`03_docker_check.md`](docs/logs/03_docker_check.md) |
-| Git | git version 2.56.0 | [`00_env.md`](docs/logs/00_env.md) |
+| Windows | Microsoft Windows [Version 10.0.26200] | [`00_env.md`](docs/logs/00_env.md) |
+| OS (WSL) | Ubuntu 26.04.1 LTS (x86_64), 커널 6.18.54.1-microsoft-standard-WSL2 | [`00_env.md`](docs/logs/00_env.md) |
+| Shell | GNU bash 5.3.9 | [`00_env.md`](docs/logs/00_env.md) |
+| Terminal | VSCode 통합 터미널 (WSL: Ubuntu, `TERM_PROGRAM=vscode`) | [`00_env.md`](docs/logs/00_env.md) |
+| Docker | Docker version 29.9.2 (Server 29.9.2, Docker Desktop 4.98.0) | [`03_docker_check.md`](docs/logs/03_docker_check.md) |
+| Git | git version 2.53.0 | [`00_env.md`](docs/logs/00_env.md) |
 
 ---
 
@@ -339,7 +342,7 @@ E1-1/
 |:---:|---|:---:|
 | 1 | 미션 분석, GitHub 저장소 생성 | — |
 | 2 | 폴더 구조·자동화 스크립트·Dockerfile·`.gitignore` 구성 | [4장](#4-폴더-구조) |
-| 3 | 실행 환경 준비 (WSL2 + Docker Desktop + VSCode 설치, SSH 키 등록) | [`SETUP.md`](docs/SETUP.md) |
+| 3 | 실행 환경 준비 (WSL2 + Docker Desktop + VSCode 설치, SSH 키 등록) | [`SETUP.md`](docs/SETUP.md), 스크린샷 3장 |
 | 4 | 실행 환경 기록 | `00_env.md` |
 | 5 | 터미널 기본 조작 (위치·목록·이동·생성·복사·이름변경·삭제) | `01_terminal.md` |
 | 6 | 권한 실습 (파일 644→755, 디렉토리 755→700, x 제거 실험) | `02_permission.md` |
@@ -349,7 +352,7 @@ E1-1/
 | 10 | 포트 매핑 2회 실행 + 브라우저 접속 | `05_build_run.md`, 스크린샷 2장 |
 | 11 | 바인드 마운트 변경 반영 검증 | `06_bind_mount.md` |
 | 12 | 볼륨 영속성 검증 | `07_volume.md` |
-| 13 | Git 설정 + VSCode GitHub 연동 + 보너스 Compose | `08_git.md`, `09_compose.md`, 스크린샷 1장 |
+| 13 | Git 설정 + VSCode GitHub 연동 + 보너스 Compose·SSH | `08_git.md`, `09_compose.md`, 스크린샷 2장 |
 | 14 | README 작성, 민감정보 마스킹, 최종 제출 | 본 문서 |
 
 ---
@@ -450,25 +453,34 @@ flowchart LR
 
 ```bash
 $ ls -l perm_file.txt          # 변경 전 644
--rw-r--r-- 1 codespace codespace 16 Nov  4 07:53 perm_file.txt
+-rw-r--r-- 1 ilililililil4319 ilililililil4319 16 Nov  5 14:42 perm_file.txt
 $ chmod 755 perm_file.txt
 $ ls -l perm_file.txt          # 변경 후 755
--rwxr-xr-x 1 codespace codespace 16 Nov  4 07:53 perm_file.txt
+-rwxr-xr-x 1 ilililililil4319 ilililililil4319 16 Nov  5 14:42 perm_file.txt
 
 $ ls -ld perm_dir              # 변경 전 755
-drwxr-xr-x 2 codespace codespace 4096 Nov  4 07:53 perm_dir
+drwxr-xr-x 2 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 perm_dir
 $ chmod 700 perm_dir
 $ ls -ld perm_dir              # 변경 후 700
-drwx------ 2 codespace codespace 4096 Nov  4 07:53 perm_dir
+drwx------ 2 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 perm_dir
+
+$ chmod 600 perm_dir           # 디렉토리에서 x 제거
+$ cd perm_dir
+cd: perm_dir: Permission denied
 ```
 
-디렉토리에서 x 를 빼면(`chmod 600`) `cd: perm_dir: Permission denied` 가 나는 것도 확인했습니다. → [`02_permission.md`](docs/logs/02_permission.md)
+디렉토리에서 x(들어가기 권한)를 빼자 소유자인데도 `cd` 가 거부되었습니다. → [`02_permission.md`](docs/logs/02_permission.md)
 
 ### 11-3. Docker 설치·점검 및 운영 명령
 
 - `docker --version` → 설치 확인, `docker info` → 데몬(Server) 동작 확인 → [`03_docker_check.md`](docs/logs/03_docker_check.md)
 - `pull`, `images`, `run`, `ps`, `ps -a`, `logs`, `stats --no-stream`, `stop`, `start`, `rm` → [`04_docker_ops.md`](docs/logs/04_docker_ops.md)
 - `hello-world` 는 메시지를 출력하고 할 일이 끝나 종료되므로 `docker ps` 에는 없고 `docker ps -a` 에만 `Exited (0)` 으로 보입니다.
+
+Docker Desktop 설치 후 엔진 동작(`Engine running`)과 Ubuntu(WSL) 터미널에서의 버전 확인:
+
+![Docker Desktop 실행](docs/screenshots/docker-desktop.png)
+![Docker 버전 확인](docs/screenshots/docker-check.png)
 
 ### 11-4. ubuntu 컨테이너 진입 및 attach / exec 비교
 
@@ -517,7 +529,7 @@ docker ps -a                      # → Exited (0)
 $ docker build -t my-web:1.0 .
 $ docker images my-web
 IMAGE        ID             DISK USAGE   CONTENT SIZE
-my-web:1.0   bece07595fb3       73.6MB           21MB
+my-web:1.0   b4547f8e84e7       73.6MB           21MB
 ```
 
 → [`05_build_run.md`](docs/logs/05_build_run.md)
@@ -568,9 +580,11 @@ hi                                                                 # 데이터 �
 ### 11-9. Git 설정 및 GitHub 연동
 
 - `git config --global user.name / user.email / init.defaultBranch main` 설정 후 `git config --list` 기록 → [`08_git.md`](docs/logs/08_git.md)
-- VSCode 에 GitHub 계정으로 로그인해 저장소와 연동했습니다.
+- VSCode(WSL: Ubuntu 연결)에 GitHub 계정으로 로그인해 저장소와 연동했습니다.
+- SSH 키(ed25519)를 만들어 **공개키만** GitHub 에 등록하고, `git@github.com:` 주소로 clone·push 했습니다 (`remote.origin.url=git@github.com:ilililililil4319/E1-1.git`).
 
 ![VSCode GitHub 연동](docs/screenshots/vscode-github.png)
+![SSH 연결 확인](docs/screenshots/ssh-github.png)
 
 ---
 
@@ -584,7 +598,7 @@ hi                                                                 # 데이터 �
 | 2 | 멀티 컨테이너 | `web`(내 nginx) + `checker`(alpine) | checker 가 `http://web/` 으로 접속해 내 페이지 수신 → 컨테이너 간 통신 성공 | ✅ |
 | 3 | 운영 명령어 | `up` → `ps` → `logs` → `down` → `ps` | 두 서비스 Up, web `(healthy)` / down 후 목록 비어 있음 | ✅ |
 | 4 | 환경 변수 | `APP_ENV=dev WEB_PORT=8090 docker compose up -d` | `printenv APP_ENV` → `dev`, `localhost:8090` 응답 | ✅ |
-| 5 | GitHub SSH 키 | — | 이번에는 HTTPS 방식으로 push (미수행) | ⬜ |
+| 5 | GitHub SSH 키 | `ssh-keygen -t ed25519` → 공개키(`.pub`)를 GitHub 에 등록 → SSH 주소로 clone | `ssh -T git@github.com` → `Hi …! You've successfully authenticated`, 서버 지문 `SHA256:+DiY3wvv…` 이 GitHub 공개 값과 일치 | ✅ |
 
 **배운 점:** 실행 명령을 파일로 문서화하면 누구나 `up` 한 줄로 같은 구성을 재현할 수 있고, 포트·모드 같은 설정은 환경 변수로 분리해 코드를 고치지 않고 바꿀 수 있다.
 
@@ -650,6 +664,34 @@ bash scripts/09_compose.sh     # (보너스)
 - **확인:** 탐색기에 `port-8080.png.png` 로 표시됨.
 - **해결/대안:** `mv docs/screenshots/port-8080.png.png docs/screenshots/port-8080.png`
 
+### 15-3. WSL 설치 후 "OOBE 명령이 완료되는 것을 기다리는 중" 에서 멈춤
+
+- **문제:** `wsl --install` 후 재부팅하고 Ubuntu 를 열었더니 `wsl: "Ubuntu" 배포에 대해 OOBE 명령이 완료되는 것을 기다리는 중 ...` 에서 멈추고 아이디 입력 화면이 나오지 않았다.
+- **원인 가설:** OOBE(처음 사용 설정: 사용자 계정 만들기)가 다른 창에서 대기 중이거나 설치가 끝까지 진행되지 않았다.
+- **확인:** 다른 창에 계정 생성 화면이 없었고, 같은 창에서 계속 대기했다.
+- **해결/대안:** PowerShell 에서 `wsl --install -d Ubuntu` 를 실행하자 `Create a default Unix user account:` 가 나타나 계정을 만들었다. 비밀번호는 입력해도 화면에 보이지 않으며, 두 번 입력이 다르면 `Sorry, passwords do not match` 가 나와 `y` 로 다시 입력했다.
+
+### 15-4. ssh-keygen 의 저장 경로에 다음 명령이 입력됨
+
+- **문제:** `ssh-keygen` 과 `cat ~/.ssh/id_ed25519.pub` 를 함께 붙여 넣자 키 저장 경로가 `cat ~/.ssh/id_ed25519.pub` 로 입력되고, 암호(passphrase) 확인에서 `Passphrases do not match` 가 반복됐다. ([스크린샷](docs/screenshots/trouble-ssh-keygen.png))
+- **원인 가설:** `ssh-keygen` 은 질문을 하는 명령이라, 함께 붙여 넣은 두 번째 줄이 첫 질문(저장 경로)의 답으로 들어갔다.
+- **확인:** 화면에 `Enter passphrase for "cat ~/.ssh/id_ed25519.pub"` 로 표시됨.
+- **해결/대안:** `Ctrl + C` 로 취소한 뒤 `ssh-keygen -t ed25519` 한 줄만 직접 입력하고 질문 3개에 Enter 만 눌러 기본 경로(`~/.ssh/id_ed25519`)에 생성했다. 질문하는 명령은 한 줄씩 실행한다.
+
+### 15-5. 컨테이너 안에서 docker / git 명령이 "command not found"
+
+- **문제:** `docker run -it ... bash` 로 들어간 상태에서 `docker run`, `git pull`, `bash scripts/08_git.sh` 를 입력하자 `bash: docker: command not found`, `bash: git: command not found`, `No such file or directory` 가 나왔다.
+- **원인 가설:** 프롬프트가 `root@830232cbdb8d:/#` 인 **컨테이너 안**이었다. 컨테이너는 호스트와 격리된 별도 리눅스라 docker·git·내 저장소 파일이 없다.
+- **확인:** 프롬프트가 `ilililililil4319@DESKTOP-…:~/codyssey/E1-1$`(호스트)가 아닌 `root@<컨테이너ID>:/#` 였다.
+- **해결/대안:** `exit` 로 호스트로 나온 뒤 실행했다. 명령 전에 프롬프트가 `$`(호스트)인지 `#`(컨테이너)인지 확인한다.
+
+### 15-6. 따옴표가 닫히지 않아 `>` 가 나오고 명령이 실행되지 않음
+
+- **문제:** 컨테이너 안에서 `echo "hello from inside"'exit` 를 입력하자 `>` 만 나오고, 이후 입력한 명령도 실행되지 않았다.
+- **원인 가설:** `"` 뒤에 작은따옴표 `'` 가 하나 더 들어가 따옴표가 열린 채로 남아, 쉘이 닫는 따옴표를 기다렸다.
+- **확인:** `>` 는 명령이 아직 끝나지 않았다는 연속 입력 표시다.
+- **해결/대안:** `Ctrl + C` 로 취소하고 `echo hello from inside` 처럼 다시 입력했다.
+
 ---
 
 ## 16. AI(Claude) 사용 로그 요약
@@ -672,7 +714,7 @@ bash scripts/09_compose.sh     # (보너스)
 | 제출 저장소 + 기술 문서<br/>(개요·환경·체크리스트·검증·증거 링크) | 본 README | ✅ |
 | 터미널 조작 로그 | [11-1](#11-1-터미널-조작), `01_terminal.md` | ✅ |
 | 권한 실습 (파일 1, 디렉토리 1) | [11-2](#11-2-권한-변경-파일-1-디렉토리-1), `02_permission.md` | ✅ |
-| Docker 설치 및 기본 점검 | [11-3](#11-3-docker-설치점검-및-운영-명령), `03_docker_check.md` | ✅ |
+| Docker 설치 및 기본 점검 | [11-3](#11-3-docker-설치점검-및-운영-명령), `03_docker_check.md`, 스크린샷 2장 | ✅ |
 | Docker 기본 운영 명령 | [11-3](#11-3-docker-설치점검-및-운영-명령), `04_docker_ops.md` | ✅ |
 | 컨테이너 실행 실습<br/>(hello-world, ubuntu, attach/exec) | [11-4](#11-4-ubuntu-컨테이너-진입-및-attach--exec-비교), 스크린샷 3장 | ✅ |
 | 기존 Dockerfile 기반 커스텀 이미지 | [11-5](#11-5-dockerfile-커스텀-이미지-방식-a-웹-서버-베이스--정적-콘텐츠-교체), `app/Dockerfile` | ✅ |
@@ -680,10 +722,10 @@ bash scripts/09_compose.sh     # (보너스)
 | 바인드 마운트 반영 | [11-7](#11-7-바인드-마운트-변경-반영), `06_bind_mount.md` | ✅ |
 | Docker 볼륨 영속성 | [11-8](#11-8-볼륨-영속성), `07_volume.md` | ✅ |
 | Git 설정 및 GitHub 연동 | [11-9](#11-9-git-설정-및-github-연동), `08_git.md`, 스크린샷 | ✅ |
-| 트러블슈팅 2건 이상 | [15장](#15-실습-중-발생한-오류와-해결) (2건) | ✅ |
+| 트러블슈팅 2건 이상 | [15장](#15-실습-중-발생한-오류와-해결) (6건) | ✅ |
 | 보안 및 개인정보 보호 | [19장](#19-보안-유의사항) | ✅ |
 | 보너스 (Compose 1~4) | [12장](#12-보너스-과제) | ✅ |
-| 보너스 (SSH 키) | — | ⬜ |
+| 보너스 (SSH 키) | [12장](#12-보너스-과제), [11-9](#11-9-git-설정-및-github-연동) | ✅ |
 
 ---
 
@@ -693,11 +735,12 @@ bash scripts/09_compose.sh     # (보너스)
 
 - 이미지(설계도)와 컨테이너(실행체)를 분리했기 때문에, 같은 `my-web:1.0` 으로 컨테이너를 몇 개를 만들어도 같은 결과가 나왔다.
 - 컨테이너는 격리되어 있어 바깥과 연결하는 방법(포트·마운트·볼륨)을 직접 정해야 한다는 것을, 실행 결과로 하나씩 확인했다.
+- Windows 에서도 WSL2 로 진짜 리눅스 환경을 만들자 권한(`chmod`)·바인드 마운트가 리눅스와 똑같이 동작했다.
 - 실습 명령을 스크립트로 만들고 출력을 자동 기록하자, 몇 번을 다시 실행해도 `bash scripts/run_all.sh` 한 줄로 같은 결과를 재현할 수 있었다.
 
 ### 한계점
 
-- 보너스 5번(SSH 키)은 수행하지 않았다.
+- 실습 환경은 Windows + WSL2 기준이다. macOS 는 OrbStack 또는 Docker Desktop 으로 같은 스크립트를 실행할 수 있지만 직접 검증하지는 않았다.
 - 스크립트가 많은 명령을 자동으로 실행하므로, 각 명령의 의미는 따로 학습해 설명할 수 있어야 한다.
 
 ---
@@ -707,6 +750,8 @@ bash scripts/09_compose.sh     # (보너스)
 - 로그 스크립트는 `ghp_...` 같은 GitHub 토큰과 password/token/secret 줄을 자동으로 `****` 처리한다 ([`scripts/lib.sh`](scripts/lib.sh)).
 - 스크린샷의 GitHub 아이디·이메일은 가렸다. 토큰·비밀번호·인증 코드는 어떤 파일에도 없다.
 - `.gitignore` 로 `.env`, 키 파일(`*.pem`, `id_ed25519*`)이 올라가지 않게 막았다.
+- SSH 키는 **공개키(`id_ed25519.pub`)만** GitHub 에 등록했고, 개인키(`id_ed25519`)는 내 PC 의 `~/.ssh/` 에만 두고 출력·공유하지 않았다.
+- 첫 SSH 접속 때 서버 지문을 GitHub 공개 값과 비교한 뒤 `yes` 로 승인했다 (`~/.ssh/known_hosts` 에 저장).
 - 민감 정보가 올라간 경우: 파일과 Git 기록에서 제거하고 해당 토큰/키를 폐기 후 재발급한다.
 - 공용 PC 를 쓸 때는 작업 후 GitHub 로그아웃과 Git 사용자 정보 삭제(`git config --global --unset user.name / user.email`)를 한다.
 
