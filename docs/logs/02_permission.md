@@ -1,6 +1,6 @@
 # 권한 실습 로그
 
-- 실행 시각: 2026-11-04 07:53:34
+- 실행 시각: 2026-11-05 14:42:08
 - 생성: `scripts/02_permission.sh` 실행 결과 (명령 + 출력 자동 기록)
 
 ```bash
@@ -19,7 +19,7 @@ $ chmod 644 perm_file.txt
 
 ```bash
 $ ls -l perm_file.txt
--rw-r--r-- 1 codespace codespace 16 Nov  4 07:53 perm_file.txt
+-rw-r--r-- 1 ilililililil4319 ilililililil4319 16 Nov  5 14:42 perm_file.txt
 $ chmod 755 perm_file.txt
 ```
 
@@ -27,7 +27,7 @@ $ chmod 755 perm_file.txt
 
 ```bash
 $ ls -l perm_file.txt
--rwxr-xr-x 1 codespace codespace 16 Nov  4 07:53 perm_file.txt
+-rwxr-xr-x 1 ilililililil4319 ilililililil4319 16 Nov  5 14:42 perm_file.txt
 ```
 
 ## 2. 디렉토리 권한: 755 → 700
@@ -41,7 +41,7 @@ $ chmod 755 perm_dir
 
 ```bash
 $ ls -ld perm_dir
-drwxr-xr-x 2 codespace codespace 4096 Nov  4 07:53 perm_dir
+drwxr-xr-x 2 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 perm_dir
 $ chmod 700 perm_dir
 ```
 
@@ -49,7 +49,7 @@ $ chmod 700 perm_dir
 
 ```bash
 $ ls -ld perm_dir
-drwx------ 2 codespace codespace 4096 Nov  4 07:53 perm_dir
+drwx------ 2 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 perm_dir
 ```
 
 ## 3. 실험: 디렉토리의 x(실행) 권한을 빼면?
@@ -59,7 +59,7 @@ drwx------ 2 codespace codespace 4096 Nov  4 07:53 perm_dir
 ```bash
 $ chmod 600 perm_dir
 $ ls -ld perm_dir
-drw------- 2 codespace codespace 4096 Nov  4 07:53 perm_dir
+drw------- 2 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 perm_dir
 $ cd perm_dir
 ./lib.sh: line 56: cd: perm_dir: Permission denied
 ```
@@ -69,7 +69,7 @@ $ cd perm_dir
 ```bash
 $ chmod 755 perm_dir
 $ cd perm_dir && pwd && cd ..
-/home/codespace/codyssey/practice/perm_dir
+/home/ilililililil4319/codyssey/practice/perm_dir
 ```
 
 ## 4. 문자 방식 chmod
@@ -77,7 +77,7 @@ $ cd perm_dir && pwd && cd ..
 ```bash
 $ chmod u-x,g-x,o-x perm_file.txt
 $ ls -l perm_file.txt
--rw-r--r-- 1 codespace codespace 16 Nov  4 07:53 perm_file.txt
+-rw-r--r-- 1 ilililililil4319 ilililililil4319 16 Nov  5 14:42 perm_file.txt
 ```
 
 u=소유자, g=그룹, o=그 외 / + 추가, - 제거

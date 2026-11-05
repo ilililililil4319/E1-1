@@ -1,6 +1,6 @@
 # 터미널 조작 로그
 
-- 실행 시각: 2026-11-04 07:53:34
+- 실행 시각: 2026-11-05 14:42:08
 - 생성: `scripts/01_terminal.sh` 실행 결과 (명령 + 출력 자동 기록)
 
 ## 1. 현재 위치 확인
@@ -8,7 +8,7 @@
 ```bash
 $ cd ~
 $ pwd
-/home/codespace
+/home/ilililililil4319
 ```
 
 ## 2. 폴더 생성 (중간 폴더까지 한 번에: -p)
@@ -22,9 +22,9 @@ $ mkdir -p ~/codyssey/practice
 절대 경로: 루트(/)부터 시작하는 전체 주소라 어디서 실행해도 같은 곳으로 간다.
 
 ```bash
-$ cd /home/codespace/codyssey/practice
+$ cd /home/ilililililil4319/codyssey/practice
 $ pwd
-/home/codespace/codyssey/practice
+/home/ilililililil4319/codyssey/practice
 ```
 
 ## 4. 이동 - 상대 경로
@@ -34,10 +34,10 @@ $ pwd
 ```bash
 $ cd ..
 $ pwd
-/home/codespace/codyssey
+/home/ilililililil4319/codyssey
 $ cd ./practice
 $ pwd
-/home/codespace/codyssey/practice
+/home/ilililililil4319/codyssey/practice
 ```
 
 ## 5. 빈 파일 생성 / 목록 확인 (숨김 파일 포함)
@@ -47,10 +47,10 @@ $ touch empty.txt
 $ touch .hidden_file
 $ ls -la
 total 8
-drwxr-xr-x 2 codespace codespace 4096 Nov  4 07:53 .
-drwxr-xr-x 3 codespace codespace 4096 Nov  4 07:53 ..
--rw-r--r-- 1 codespace codespace    0 Nov  4 07:53 .hidden_file
--rw-r--r-- 1 codespace codespace    0 Nov  4 07:53 empty.txt
+drwxr-xr-x 2 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 .
+drwxr-xr-x 4 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 ..
+-rw-r--r-- 1 ilililililil4319 ilililililil4319    0 Nov  5 14:42 .hidden_file
+-rw-r--r-- 1 ilililililil4319 ilililililil4319    0 Nov  5 14:42 empty.txt
 ```
 
 ## 6. 파일에 내용 쓰기 / 내용 확인
@@ -70,9 +70,9 @@ $ mkdir backup
 $ cp hello.txt backup/hello_copy.txt
 $ ls -la backup
 total 12
-drwxr-xr-x 2 codespace codespace 4096 Nov  4 07:53 .
-drwxr-xr-x 3 codespace codespace 4096 Nov  4 07:53 ..
--rw-r--r-- 1 codespace codespace   27 Nov  4 07:53 hello_copy.txt
+drwxr-xr-x 2 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 .
+drwxr-xr-x 3 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 ..
+-rw-r--r-- 1 ilililililil4319 ilililililil4319   27 Nov  5 14:42 hello_copy.txt
 ```
 
 ## 8. 이동 / 이름 변경
@@ -82,10 +82,10 @@ $ mv backup/hello_copy.txt backup/hello_renamed.txt
 $ mv empty.txt backup/
 $ ls -la backup
 total 12
-drwxr-xr-x 2 codespace codespace 4096 Nov  4 07:53 .
-drwxr-xr-x 3 codespace codespace 4096 Nov  4 07:53 ..
--rw-r--r-- 1 codespace codespace    0 Nov  4 07:53 empty.txt
--rw-r--r-- 1 codespace codespace   27 Nov  4 07:53 hello_renamed.txt
+drwxr-xr-x 2 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 .
+drwxr-xr-x 3 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 ..
+-rw-r--r-- 1 ilililililil4319 ilililililil4319    0 Nov  5 14:42 empty.txt
+-rw-r--r-- 1 ilililililil4319 ilililililil4319   27 Nov  5 14:42 hello_renamed.txt
 ```
 
 ## 9. 삭제
@@ -96,9 +96,9 @@ $ rm backup/empty.txt
 $ rmdir backup
 $ ls -la
 total 12
-drwxr-xr-x 2 codespace codespace 4096 Nov  4 07:53 .
-drwxr-xr-x 3 codespace codespace 4096 Nov  4 07:53 ..
--rw-r--r-- 1 codespace codespace    0 Nov  4 07:53 .hidden_file
--rw-r--r-- 1 codespace codespace   27 Nov  4 07:53 hello.txt
+drwxr-xr-x 2 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 .
+drwxr-xr-x 4 ilililililil4319 ilililililil4319 4096 Nov  5 14:42 ..
+-rw-r--r-- 1 ilililililil4319 ilililililil4319    0 Nov  5 14:42 .hidden_file
+-rw-r--r-- 1 ilililililil4319 ilililililil4319   27 Nov  5 14:42 hello.txt
 ```
 

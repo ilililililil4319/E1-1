@@ -1,10 +1,10 @@
 # 보너스: Docker Compose 로그
 
-- 실행 시각: 2026-11-04 08:35:01
+- 실행 시각: 2026-11-05 15:03:40
 - 생성: `scripts/09_compose.sh` 실행 결과 (명령 + 출력 자동 기록)
 
 ```bash
-$ cd /workspaces/E1-1/compose
+$ cd /home/ilililililil4319/codyssey/E1-1/compose
 $ cat docker-compose.yml
 # 보너스: Docker Compose 멀티 컨테이너 + 환경 변수
 # 실행: cd compose && docker compose up -d --build
@@ -31,17 +31,18 @@ services:
 $ APP_ENV=dev WEB_PORT=8090 docker compose up -d --build
  Image alpine:3.20 Pulling 
  25f1d6b1951a Pulling fs layer 0B
- 25f1d6b1951a Downloading 3.63MB
+ 25f1d6b1951a Downloading 1.049MB
+ 25f1d6b1951a Downloading 2.097MB
+ 25f1d6b1951a Downloading 3.146MB
  25f1d6b1951a Download complete 0B
- 25f1d6b1951a Extracting 1B
- 25f1d6b1951a Pull complete 0B
- 3a030ca3f633 Downloading 5.056kB
  3a030ca3f633 Download complete 0B
  d4050d56ebf2 Download complete 0B
+ 25f1d6b1951a Extracting 1B
+ 25f1d6b1951a Pull complete 0B
  Image alpine:3.20 Pulled 
  Image my-web:compose Building 
 #1 [internal] load local bake definitions
-#1 reading from stdin 483B done
+#1 reading from stdin 523B done
 #1 DONE 0.0s
 
 #2 [internal] load build definition from Dockerfile
@@ -56,7 +57,7 @@ $ APP_ENV=dev WEB_PORT=8090 docker compose up -d --build
 #4 DONE 0.0s
 
 #5 [internal] load build context
-#5 transferring context: 119B done
+#5 transferring context: 61B done
 #5 DONE 0.0s
 
 #6 [1/2] FROM docker.io/library/nginx:1.27-alpine@sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10
@@ -68,11 +69,11 @@ $ APP_ENV=dev WEB_PORT=8090 docker compose up -d --build
 
 #8 exporting to image
 #8 exporting layers done
-#8 exporting manifest sha256:fb7640fac4b28f97780b6845fd99c7232e4111e5b1f67550acaef4be05a83f0a 0.0s done
-#8 exporting config sha256:a1784b1e1babc24e278c7a56551f2e9faf7f2899eb24cb2005f012408bc96a91 0.0s done
-#8 exporting attestation manifest sha256:fc5bbcdbca449652293eb8c18f7ac7a8192ad3d80bf5378fcd9f2729567d0054 0.0s done
-#8 exporting manifest list sha256:ca9dbd718e946f50098ccbb533c9c803f544c32e6909afb2c040cd35bba7be9d
-#8 exporting manifest list sha256:ca9dbd718e946f50098ccbb533c9c803f544c32e6909afb2c040cd35bba7be9d 0.0s done
+#8 exporting manifest sha256:322432a53c2647684f88bd96471c5a993051cbcd2b4bb9716674adbe63b0cc32 0.0s done
+#8 exporting config sha256:ae5a023c24ae4a3a39424df04c59f1a4a27c1a745b65a692486165c4560681dc 0.0s done
+#8 exporting attestation manifest sha256:c45780bb89c6c95ae90ad8c06d837de9f778be719a6b80a74697d4a8d833a113 0.0s done
+#8 exporting manifest list sha256:b57c47d68c70539ce73d8af566d53160bb9b74ebb65638ab5e53a6c069ea71c0 0.0s done
+#8 naming to docker.io/library/my-web:compose
 #8 naming to docker.io/library/my-web:compose done
 #8 unpacking to docker.io/library/my-web:compose done
 #8 DONE 0.1s
@@ -138,11 +139,11 @@ $ curl -s http://localhost:8090
 
 ```bash
 $ docker compose logs web | tail -5
-web-1  | 2026/11/04 08:35:06 [notice] 1#1: start worker process 30
-web-1  | 2026/11/04 08:35:06 [notice] 1#1: start worker process 31
-web-1  | 172.18.0.3 - - [04/Nov/2026:08:35:09 +0000] "GET / HTTP/1.1" 200 261 "-" "Wget" "-"
-web-1  | ::1 - - [04/Nov/2026:08:35:10 +0000] "GET / HTTP/1.1" 200 261 "-" "Wget" "-"
-web-1  | 172.18.0.1 - - [04/Nov/2026:08:35:11 +0000] "GET / HTTP/1.1" 200 261 "-" "curl/8.5.0" "-"
+web-1  | 2026/11/05 06:03:45 [notice] 1#1: start worker process 36
+web-1  | 2026/11/05 06:03:45 [notice] 1#1: start worker process 37
+web-1  | 172.18.0.3 - - [05/Nov/2026:06:03:49 +0000] "GET / HTTP/1.1" 200 261 "-" "Wget" "-"
+web-1  | ::1 - - [05/Nov/2026:06:03:50 +0000] "GET / HTTP/1.1" 200 261 "-" "Wget" "-"
+web-1  | 172.18.0.1 - - [05/Nov/2026:06:03:51 +0000] "GET / HTTP/1.1" 200 261 "-" "curl/8.18.0" "-"
 ```
 
 ## 5. 종료 (down)

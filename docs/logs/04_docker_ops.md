@@ -1,6 +1,6 @@
 # Docker 운영 / 컨테이너 실행 로그
 
-- 실행 시각: 2026-11-04 07:53:35
+- 실행 시각: 2026-11-05 14:42:10
 - 생성: `scripts/04_docker_ops.sh` 실행 결과 (명령 + 출력 자동 기록)
 
 ## 1. 이미지 다운로드 / 목록
@@ -9,39 +9,39 @@
 $ docker pull ubuntu:24.04
 24.04: Pulling from library/ubuntu
 7a48b8f0e5c7: Pulling fs layer
-7a48b8f0e5c7: Download complete
 98144013299c: Download complete
+7a48b8f0e5c7: Download complete
 7a48b8f0e5c7: Pull complete
 Digest: sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
 Status: Downloaded newer image for ubuntu:24.04
 docker.io/library/ubuntu:24.04
 $ docker pull nginx:1.27-alpine
 1.27-alpine: Pulling from library/nginx
-61ca4f733c80: Pulling fs layer
-81bd8ed7ec67: Pulling fs layer
 39c2ddfd6010: Pulling fs layer
-197eb75867ef: Pulling fs layer
-d7e507024086: Pulling fs layer
+b464cfdf2a63: Pulling fs layer
 f18232174bc9: Pulling fs layer
 34a64644b756: Pulling fs layer
-b464cfdf2a63: Pulling fs layer
+d7e507024086: Pulling fs layer
+81bd8ed7ec67: Pulling fs layer
+61ca4f733c80: Pulling fs layer
+197eb75867ef: Pulling fs layer
+197eb75867ef: Download complete
 b464cfdf2a63: Download complete
 81bd8ed7ec67: Download complete
-61ca4f733c80: Download complete
-d7e507024086: Download complete
-39c2ddfd6010: Download complete
-f18232174bc9: Download complete
-197eb75867ef: Download complete
 34a64644b756: Download complete
+f18232174bc9: Download complete
+d7e507024086: Download complete
+61ca4f733c80: Download complete
 f18232174bc9: Pull complete
-2a84448aca9c: Download complete
-61ca4f733c80: Pull complete
 b464cfdf2a63: Pull complete
 81bd8ed7ec67: Pull complete
 d7e507024086: Pull complete
+61ca4f733c80: Pull complete
 197eb75867ef: Pull complete
 34a64644b756: Pull complete
+2a84448aca9c: Download complete
 9261b9aff737: Download complete
+39c2ddfd6010: Download complete
 39c2ddfd6010: Pull complete
 Digest: sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10
 Status: Downloaded newer image for nginx:1.27-alpine
@@ -101,18 +101,18 @@ hello-world 는 이미 종료되어 docker ps 에는 없고 docker ps -a 에만 
 
 ```bash
 $ docker ps -a
-CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                              PORTS     NAMES
-082535bba6b7   hello-world   "/hello"   3 seconds ago   Exited (0) Less than a second ago             hello
+CONTAINER ID   IMAGE         COMMAND    CREATED                  STATUS                              PORTS     NAMES
+49b464a6befa   hello-world   "/hello"   Less than a second ago   Exited (0) Less than a second ago             hello
 ```
 
 ## 4. 실행 / 로그 / 리소스 / 중지
 
 ```bash
 $ docker run -d --name ops-nginx nginx:1.27-alpine
-e8aa521000132fdfc0ea252eb036d7a30b216d3111c4eebe19b898234023236a
+55ff9ebcde0b0078d6d39ce785d48564150ee719949e989180b1f4a3cef495e9
 $ docker ps
 CONTAINER ID   IMAGE               COMMAND                  CREATED                  STATUS                  PORTS     NAMES
-e8aa52100013   nginx:1.27-alpine   "/docker-entrypoint.…"   Less than a second ago   Up Less than a second   80/tcp    ops-nginx
+55ff9ebcde0b   nginx:1.27-alpine   "/docker-entrypoint.…"   Less than a second ago   Up Less than a second   80/tcp    ops-nginx
 $ docker logs ops-nginx
 /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
@@ -123,27 +123,33 @@ $ docker logs ops-nginx
 /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 /docker-entrypoint.sh: Configuration complete; ready for start up
-2026/11/04 07:53:50 [notice] 1#1: using the "epoll" event method
-2026/11/04 07:53:50 [notice] 1#1: nginx/1.27.5
-2026/11/04 07:53:50 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
-2026/11/04 07:53:50 [notice] 1#1: OS: Linux 6.8.0-1064-azure
-2026/11/04 07:53:50 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
-2026/11/04 07:53:50 [notice] 1#1: start worker processes
-2026/11/04 07:53:50 [notice] 1#1: start worker process 31
-2026/11/04 07:53:50 [notice] 1#1: start worker process 32
+2026/11/05 05:42:29 [notice] 1#1: using the "epoll" event method
+2026/11/05 05:42:29 [notice] 1#1: nginx/1.27.5
+2026/11/05 05:42:29 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2026/11/05 05:42:29 [notice] 1#1: OS: Linux 6.18.54.1-microsoft-standard-WSL2
+2026/11/05 05:42:29 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2026/11/05 05:42:29 [notice] 1#1: start worker processes
+2026/11/05 05:42:29 [notice] 1#1: start worker process 30
+2026/11/05 05:42:29 [notice] 1#1: start worker process 31
+2026/11/05 05:42:29 [notice] 1#1: start worker process 32
+2026/11/05 05:42:29 [notice] 1#1: start worker process 33
+2026/11/05 05:42:29 [notice] 1#1: start worker process 34
+2026/11/05 05:42:29 [notice] 1#1: start worker process 35
+2026/11/05 05:42:29 [notice] 1#1: start worker process 36
+2026/11/05 05:42:29 [notice] 1#1: start worker process 37
 $ docker stats --no-stream ops-nginx
 CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O      BLOCK I/O     PIDS
-e8aa52100013   ops-nginx   0.00%     3.031MiB / 7.756GiB   0.04%     732B / 84B   0B / 8.19kB   3
+55ff9ebcde0b   ops-nginx   0.00%     7.895MiB / 7.732GiB   0.10%     980B / 84B   0B / 8.19kB   9
 $ docker stop ops-nginx
 ops-nginx
 $ docker ps -a --filter name=ops-nginx
-CONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS                              PORTS     NAMES
-e8aa52100013   nginx:1.27-alpine   "/docker-entrypoint.…"   2 seconds ago   Exited (0) Less than a second ago             ops-nginx
+CONTAINER ID   IMAGE               COMMAND                  CREATED        STATUS                              PORTS     NAMES
+55ff9ebcde0b   nginx:1.27-alpine   "/docker-entrypoint.…"   1 second ago   Exited (0) Less than a second ago             ops-nginx
 $ docker start ops-nginx
 ops-nginx
 $ docker ps --filter name=ops-nginx
 CONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS                  PORTS     NAMES
-e8aa52100013   nginx:1.27-alpine   "/docker-entrypoint.…"   2 seconds ago   Up Less than a second   80/tcp    ops-nginx
+55ff9ebcde0b   nginx:1.27-alpine   "/docker-entrypoint.…"   2 seconds ago   Up Less than a second   80/tcp    ops-nginx
 $ docker rm -f ops-nginx
 ops-nginx
 ```
@@ -180,13 +186,13 @@ hello-from-ubuntu
 
 ```bash
 $ docker run -dit --name obs-ubuntu ubuntu:24.04 bash
-b7e5119e9612f3918bdcef33f46065ecd257e4b28cb5ee093b9906048abe9b58
+53ea3d713eb2bc06599e077cbcfb140d157aafaa3f5db92231fd3c17599e0943
 $ docker exec obs-ubuntu bash -c 'echo inside-by-exec && hostname'
 inside-by-exec
-b7e5119e9612
+53ea3d713eb2
 $ docker ps --filter name=obs-ubuntu
 CONTAINER ID   IMAGE          COMMAND   CREATED        STATUS                  PORTS     NAMES
-b7e5119e9612   ubuntu:24.04   "bash"    1 second ago   Up Less than a second             obs-ubuntu
+53ea3d713eb2   ubuntu:24.04   "bash"    1 second ago   Up Less than a second             obs-ubuntu
 ```
 
 exec 는 새 프로세스를 따로 열기 때문에, 그 프로세스가 끝나도 메인 프로세스(bash)는 살아 있다 → 상태 Up 유지.
