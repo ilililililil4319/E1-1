@@ -130,33 +130,36 @@ E1-1/
 
 이 미션에서 사용한 CLI·Git·Docker 용어와 명령을 한 줄씩 정리했습니다.
 
+> **읽는 법**: `[` $`\color{red}{\vee}`$ `]` 안은 소리 내어 읽는 방법
+> **띄어쓰기 표시**: 명령 사이의 붉은 $`\color{red}{\vee}`$ 는 **띄어쓰기 한 칸**입니다. 예) `git` $`\color{red}{\vee}`$ `add` $`\color{red}{\vee}`$ `.` = 깃 / 띄어쓰기 / 애드 / 띄어쓰기 / 점
+
 ### CLI (터미널)
 
 | 용어 / 명령 [읽는 법] | 뜻 |
 | --- | --- |
-| CLI<br>[씨엘아이] | 글자로 명령을 입력해 컴퓨터를 다루는 방식 (Command Line Interface) |
+| CLI<br>[씨엘아이] | 글자로 명령을 입력해 컴퓨터를 다루는 방식<br>(Command Line Interface) |
 | 쉘 (Shell)<br>[셸] | 입력한 명령을 해석해 실행하는 프로그램 (bash, zsh) |
 | 프롬프트 | 명령 입력을 기다리는 표시 (`$`, `root@...:/#`) |
 | 루트 디렉토리 | 파일 시스템의 맨 꼭대기 `/` |
 | 홈 디렉토리 | 사용자 개인 폴더 `~` |
-| 절대 경로 | `/` 부터 시작하는 전체 경로 (`/home/사용자/codyssey`) |
+| 절대 경로 | `/` 부터 시작하는 전체 경로<br>(`/home/사용자/codyssey`) |
 | 상대 경로 | 현재 위치 기준 경로 (`./practice`, `../`) |
 | `.` / `..`<br>[점 / 점점(닷닷)] | 현재 디렉토리 / 상위 디렉토리 |
 | 숨김 파일 | 이름이 `.` 으로 시작하는 파일 (`.gitignore`) |
 | `pwd`<br>[피더블유디] | 현재 위치 출력 |
-| `ls -la`<br>[엘에스 대시 엘에이] | 숨김 파일 포함 상세 목록 (`-l` 상세, `-a` 전부) |
+| `ls` $`\color{red}{\vee}`$ `-la`<br>[엘에스 대시 엘에이] | 숨김 파일 포함 상세 목록<br>(`-l` 상세, `-a` 전부) |
 | `cd`<br>[씨디] | 디렉토리 이동 |
-| `mkdir -p`<br>[엠케이디르(메이크디렉토리) 대시 피] | 디렉토리 생성 (`-p`: 중간 디렉토리까지 한 번에) |
+| `mkdir` $`\color{red}{\vee}`$ `-p`<br>[엠케이디르 대시 피] | 디렉토리 생성<br>(`-p`: 중간 디렉토리까지 한 번에) |
 | `touch`<br>[터치] | 빈 파일 생성 |
 | `cat`<br>[캣] | 파일 내용 출력 |
-| `cp` / `cp -r`<br>[씨피 / 씨피 대시 알] | 파일 복사 / 디렉토리 통째로 복사 |
+| `cp` / `cp` $`\color{red}{\vee}`$ `-r`<br>[씨피 / 씨피 대시 알] | 파일 복사 / 디렉토리 통째로 복사 |
 | `mv`<br>[엠브이(무브)] | 이동 또는 이름 변경 |
-| `rm` / `rm -r`<br>[알엠 / 알엠 대시 알] | 파일 삭제 / 디렉토리 삭제 |
+| `rm` / `rm` $`\color{red}{\vee}`$ `-r`<br>[알엠 / 알엠 대시 알] | 파일 삭제 / 디렉토리 삭제 |
 | `rmdir`<br>[알엠디르] | 빈 디렉토리 삭제 |
 | `echo`<br>[에코] | 문자열 출력 |
-| `>` / `>>`<br>[리다이렉트 / 어펜드] | 출력을 파일에 덮어쓰기 / 이어쓰기 |
-| `\|` (파이프)<br>[파이프] | 앞 명령의 출력을 뒤 명령의 입력으로 전달 (`docker info \| head -5`) |
-| `curl`<br>[컬] | 터미널에서 URL 요청 (`curl http://localhost:8080`) |
+| `>` / `>>`<br>[리다이렉트<br>/ 어펜드] | 출력을 파일에 덮어쓰기 / 이어쓰기 |
+| `\|` (파이프)<br>[파이프] | 앞 명령의 출력을<br>뒤 명령의 입력으로 전달<br>(`docker` $`\color{red}{\vee}`$ `info` $`\color{red}{\vee}`$ `\|` $`\color{red}{\vee}`$ `head` $`\color{red}{\vee}`$ `-5`) |
+| `curl`<br>[컬] | 터미널에서 URL 요청<br>(`curl` $`\color{red}{\vee}`$ `http://localhost:8080`) |
 
 ### 권한
 
@@ -168,9 +171,9 @@ E1-1/
 | 644<br>[육사사] | `rw-r--r--` — 일반 파일 |
 | 700<br>[칠공공] | `rwx------` — 소유자만 접근 |
 | 디렉토리의 x<br>[엑스] | 그 안으로 들어갈(`cd`) 수 있는 권한 |
-| `ls -l`<br>[엘에스 대시 엘] | 파일 권한 확인 (맨 앞 `-` 파일, `d` 디렉토리) |
-| `ls -ld`<br>[엘에스 대시 엘디] | 디렉토리 자체의 권한 확인 |
-| `chmod`<br>[체모드(씨에이치모드)] | 권한 변경 (`chmod 755 파일`, `chmod u+x 파일`) |
+| `ls` $`\color{red}{\vee}`$ `-l`<br>[엘에스 대시 엘] | 파일 권한 확인 (맨 앞 `-` 파일, `d` 디렉토리) |
+| `ls` $`\color{red}{\vee}`$ `-ld`<br>[엘에스 대시 엘디] | 디렉토리 자체의 권한 확인 |
+| `chmod`<br>[체모드(씨에이치모드)] | 권한 변경 (`chmod` $`\color{red}{\vee}`$ `755` $`\color{red}{\vee}`$ `파일`, `chmod` $`\color{red}{\vee}`$ `u+x` $`\color{red}{\vee}`$ `파일`) |
 | 특수 권한 비트<br>[셋유아이디, 셋지아이디,<br>스티키] | setuid(4000, 실행 시 소유자 권한),<br>setgid(2000, 그룹 권한),<br>sticky(1000, `/tmp` 처럼 내 파일만 지울 수 있게) |
 | `sudo`<br>[수도] | 관리자(root) 권한으로 명령 실행 |
 | Permission denied<br>[퍼미션 디나이드] | 권한이 없어서 거부됨 |
@@ -187,20 +190,20 @@ E1-1/
 | 호스트 | Docker 가 설치되어 돌아가는 실제 컴퓨터 |
 | 격리 | 컨테이너끼리, 그리고 호스트와<br>분리되어 서로 영향을 주지 않음 |
 | 재현성 | 언제 어디서 실행해도 같은 결과가 나오는 성질 |
-| `docker --version`<br>[도커 대시대시 버전] | 설치 및 버전 확인 |
-| `docker info`<br>[도커 인포] | 데몬 동작 여부 확인 |
-| `docker pull`<br>[도커 풀] | 이미지 다운로드 |
-| `docker images`<br>[도커 이미지스] | 이미지 목록 |
-| `docker run`<br>[도커 런] | 이미지로 컨테이너 생성 + 실행 |
-| `docker ps` / `docker ps -a`<br>[도커 피에스 / 피에스 대시 에이] | 실행 중인 컨테이너 / 종료된 것 포함 전체 |
-| `docker stop` / `docker start`<br>[도커 스톱 / 스타트] | 컨테이너 중지 / 다시 시작 |
-| `docker rm` / `docker rm -f`<br>[도커 알엠 / 알엠 대시 에프] | 컨테이너 삭제 / 실행 중이어도 강제 삭제 |
-| `docker rmi`<br>[도커 알엠아이] | 이미지 삭제 |
-| `docker logs`<br>[도커 로그스] | 컨테이너 출력 로그 확인 (`-f` 실시간) |
-| `docker stats`<br>[도커 스탯츠] | CPU·메모리 사용량 확인 (`--no-stream` 한 번만) |
-| `docker exec -it 이름 bash`<br>[도커 이그젝 대시 아이티<br>… 배시] | 실행 중인 컨테이너에 새 bash 열기<br>(exit 해도 컨테이너 유지) |
-| `docker attach`<br>[도커 어태치] | 메인 프로세스에 연결 (exit 하면 컨테이너 종료) |
-| `docker inspect`<br>[도커 인스펙트] | 컨테이너/이미지 상세 정보 (JSON) |
+| `docker` $`\color{red}{\vee}`$ `--version`<br>[도커 대시대시 버전] | 설치 및 버전 확인 |
+| `docker` $`\color{red}{\vee}`$ `info`<br>[도커 인포] | 데몬 동작 여부 확인 |
+| `docker` $`\color{red}{\vee}`$ `pull`<br>[도커 풀] | 이미지 다운로드 |
+| `docker` $`\color{red}{\vee}`$ `images`<br>[도커 이미지스] | 이미지 목록 |
+| `docker` $`\color{red}{\vee}`$ `run`<br>[도커 런] | 이미지로 컨테이너 생성 + 실행 |
+| `docker` $`\color{red}{\vee}`$ `ps` / `docker` $`\color{red}{\vee}`$ `ps` $`\color{red}{\vee}`$ `-a`<br>[도커 피에스 / 피에스 대시 에이] | 실행 중인 컨테이너 / 종료된 것 포함 전체 |
+| `docker` $`\color{red}{\vee}`$ `stop` / `docker` $`\color{red}{\vee}`$ `start`<br>[도커 스톱 / 스타트] | 컨테이너 중지 / 다시 시작 |
+| `docker` $`\color{red}{\vee}`$ `rm` / `docker` $`\color{red}{\vee}`$ `rm` $`\color{red}{\vee}`$ `-f`<br>[도커 알엠 / 알엠 대시 에프] | 컨테이너 삭제 / 실행 중이어도 강제 삭제 |
+| `docker` $`\color{red}{\vee}`$ `rmi`<br>[도커 알엠아이] | 이미지 삭제 |
+| `docker` $`\color{red}{\vee}`$ `logs`<br>[도커 로그스] | 컨테이너 출력 로그 확인 (`-f` 실시간) |
+| `docker` $`\color{red}{\vee}`$ `stats`<br>[도커 스탯츠] | CPU·메모리 사용량 확인 (`--no-stream` 한 번만) |
+| `docker` $`\color{red}{\vee}`$ `exec` $`\color{red}{\vee}`$ `-it` $`\color{red}{\vee}`$ `이름` $`\color{red}{\vee}`$ `bash`<br>[도커 이그젝 대시 아이티<br>… 배시] | 실행 중인 컨테이너에 새 bash 열기<br>(exit 해도 컨테이너 유지) |
+| `docker` $`\color{red}{\vee}`$ `attach`<br>[도커 어태치] | 메인 프로세스에 연결 (exit 하면 컨테이너 종료) |
+| `docker` $`\color{red}{\vee}`$ `inspect`<br>[도커 인스펙트] | 컨테이너/이미지 상세 정보 (JSON) |
 | `-d`<br>[대시 디(디태치드)] | 백그라운드 실행 (detached) |
 | `-it`<br>[대시 아이티] | 대화형 + 터미널 연결 (interactive + tty) |
 | `--name`<br>[대시대시 네임] | 컨테이너 이름 지정 |
@@ -225,7 +228,7 @@ E1-1/
 | `LABEL`<br>[레이블] | 이미지 메타데이터(설명) |
 | `EXPOSE`<br>[익스포즈] | 사용하는 포트를 문서로 표시 (실제 연결은 `-p`) |
 | `HEALTHCHECK`<br>[헬스체크] | 컨테이너 상태 주기 검사 → `(healthy)` 표시 |
-| `docker build -t 이름:태그 .`<br>[도커 빌드 대시 티 … 점] | 이미지 빌드 (`-t` 이름, `.` 빌드 컨텍스트) |
+| `docker` $`\color{red}{\vee}`$ `build` $`\color{red}{\vee}`$ `-t` $`\color{red}{\vee}`$ `이름:태그` $`\color{red}{\vee}`$ `.`<br>[도커 빌드 대시 티 … 점] | 이미지 빌드 (`-t` 이름, `.` 빌드 컨텍스트) |
 | 빌드 컨텍스트 | 빌드에 사용할 파일이 있는 폴더 (명령 끝의 `.`) |
 | 커스텀 이미지 | 기존 베이스 이미지에 내 설정·파일을 더해 만든 이미지 |
 
@@ -235,32 +238,32 @@ E1-1/
 | --- | --- |
 | 포트 | 한 컴퓨터 안에서 프로그램을<br>구분하는 번호 (웹 80, 8080) |
 | 포트 매핑 | 호스트 포트를 컨테이너 포트에 연결 |
-| `-p 8080:80`<br>[대시 피 팔공팔공 콜론 팔공] | 호스트 8080 → 컨테이너 80<br>(순서: 호스트:컨테이너) |
+| `-p` $`\color{red}{\vee}`$ `8080:80`<br>[대시 피 팔공팔공 콜론 팔공] | 호스트 8080 → 컨테이너 80<br>(순서: 호스트:컨테이너) |
 | localhost<br>[로컬호스트] | 내 컴퓨터 자신 (127.0.0.1) |
 | port is already allocated<br>[포트 이즈 올레디 얼로케이티드] | 호스트 포트가 이미 사용 중이라는 오류 |
-| `ss -ltnp` / `lsof -i :포트`<br>[에스에스 대시 엘티엔피 / 엘에스오에프(엘소프)] | 포트를 점유한 프로세스(PID) 확인 |
-| `kill PID`<br>[킬 피아이디] | 프로세스 종료 (강제는 `kill -9`) |
+| `ss` $`\color{red}{\vee}`$ `-ltnp` / `lsof` $`\color{red}{\vee}`$ `-i` $`\color{red}{\vee}`$ `:포트`<br>[에스에스 대시 엘티엔피 / 엘에스오에프(엘소프)] | 포트를 점유한 프로세스(PID) 확인 |
+| `kill` $`\color{red}{\vee}`$ `PID`<br>[킬 피아이디] | 프로세스 종료 (강제는 `kill` $`\color{red}{\vee}`$ `-9`) |
 | 네트워크 네임스페이스 | 컨테이너마다 분리된 네트워크 공간<br>(그래서 포트 매핑이 필요) |
 | 바인드 마운트 | 호스트의 특정 폴더를 컨테이너에 연결<br>→ 변경 즉시 반영 |
-| `-v $(pwd)/site:/usr/share/nginx/html`<br>[대시 브이 … 엔진엑스] | 바인드 마운트 (호스트 경로:컨테이너 경로) |
+| `-v` $`\color{red}{\vee}`$ `$(pwd)/site:/usr/share/nginx/html`<br>[대시 브이 … 엔진엑스] | 바인드 마운트 (호스트 경로:컨테이너 경로) |
 | 볼륨 | Docker 가 관리하는 저장 공간<br>→ 컨테이너를 지워도 데이터 유지 |
 | 영속성 | 컨테이너가 사라져도 데이터가 남는 성질 |
-| `docker volume create`<br>[도커 볼륨 크리에이트] | 볼륨 생성 |
-| `docker volume ls` / `inspect` / `rm`<br>[도커 볼륨 엘에스 / 인스펙트 / 알엠] | 볼륨 목록 / 상세 / 삭제 |
-| `-v mydata:/data`<br>[대시 브이 마이데이터 콜론 데이터] | 볼륨 연결 (볼륨 이름:컨테이너 경로) |
+| `docker` $`\color{red}{\vee}`$ `volume` $`\color{red}{\vee}`$ `create`<br>[도커 볼륨 크리에이트] | 볼륨 생성 |
+| `docker` $`\color{red}{\vee}`$ `volume` $`\color{red}{\vee}`$ `ls` / `inspect` / `rm`<br>[도커 볼륨 엘에스 / 인스펙트 / 알엠] | 볼륨 목록 / 상세 / 삭제 |
+| `-v` $`\color{red}{\vee}`$ `mydata:/data`<br>[대시 브이 마이데이터 콜론 데이터] | 볼륨 연결 (볼륨 이름:컨테이너 경로) |
 
 ### Docker Compose
 
 | 용어 / 명령 [읽는 법] | 뜻 |
 | --- | --- |
-| Docker Compose<br>[도커 컴포즈] | 여러 컨테이너 실행 설정을 YAML 파일 하나로 관리하는 도구 |
+| Docker Compose<br>[도커 컴포즈] | 여러 컨테이너 실행 설정을<br>YAML 파일 하나로 관리하는 도구 |
 | `docker-compose.yml`<br>[도커 컴포즈 야믈] | Compose 설정 파일 |
-| 서비스 (services)<br>[서비시즈] | Compose 에서 실행할 컨테이너 단위 (`web`, `checker`) |
+| 서비스 (services)<br>[서비시즈] | Compose 에서 실행할 컨테이너 단위<br>(`web`, `checker`) |
 | 서비스 디스커버리 | 같은 Compose 네트워크에서<br>서비스 이름으로 접속 (`http://web/`) |
-| `docker compose up -d`<br>[도커 컴포즈 업 대시 디] | 전체 서비스 실행 (`--build` 이미지 다시 빌드) |
-| `docker compose ps`<br>[도커 컴포즈 피에스] | 서비스 상태 |
-| `docker compose logs`<br>[도커 컴포즈 로그스] | 서비스 로그 |
-| `docker compose down`<br>[도커 컴포즈 다운] | 전체 중지 + 컨테이너·네트워크 삭제 |
+| `docker` $`\color{red}{\vee}`$ `compose` $`\color{red}{\vee}`$ `up` $`\color{red}{\vee}`$ `-d`<br>[도커 컴포즈 업 대시 디] | 전체 서비스 실행<br>(`--build` 이미지 다시 빌드) |
+| `docker` $`\color{red}{\vee}`$ `compose` $`\color{red}{\vee}`$ `ps`<br>[도커 컴포즈 피에스] | 서비스 상태 |
+| `docker` $`\color{red}{\vee}`$ `compose` $`\color{red}{\vee}`$ `logs`<br>[도커 컴포즈 로그스] | 서비스 로그 |
+| `docker` $`\color{red}{\vee}`$ `compose` $`\color{red}{\vee}`$ `down`<br>[도커 컴포즈 다운] | 전체 중지 + 컨테이너·네트워크 삭제 |
 
 ### Git / GitHub
 
@@ -272,20 +275,20 @@ E1-1/
 | 로컬 / 원격 (remote)<br>[로컬 / 리모트] | 내 컴퓨터의 저장소<br>/ GitHub 의 저장소 |
 | origin<br>[오리진] | 원격 저장소의 기본 별칭 |
 | 커밋 (commit)<br>[커밋] | 변경 내용을 저장한<br>기록(세이브 포인트) |
-| 스테이징 영역<br>[스테이징] | 커밋할 파일을 모아 두는 곳<br>(`git add`) |
+| 스테이징 영역<br>[스테이징] | 커밋할 파일을 모아 두는 곳<br>(`git` $`\color{red}{\vee}`$ `add`) |
 | 브랜치 (branch)<br>[브랜치] | 독립된 작업 흐름, 기본 이름 `main` |
-| `git config --global user.name / user.email`<br>[깃 컨피그 대시대시 글로벌 유저 점 네임 / 이메일] | 커밋 작성자 정보 설정 |
-| `git config --global init.defaultBranch main`<br>[깃 컨피그 … 이닛 점 디폴트브랜치 메인] | 기본 브랜치 이름을 main 으로 |
-| `git config --list`<br>[깃 컨피그 대시대시 리스트] | 설정 전체 확인 |
-| `git init`<br>[깃 이닛] | 현재 폴더를 Git 저장소로 만들기 |
-| `git clone`<br>[깃 클론] | 원격 저장소를 통째로 복사 |
-| `git status`<br>[깃 스테이터스] | 변경 상태 확인 |
-| `git add .`<br>[깃 애드 점] | 변경 파일 전부 스테이징 |
-| `git commit -m "메시지"`<br>[깃 커밋 대시 엠] | 커밋 생성 |
-| `git push` /<br>`git pull`<br>[깃 푸시 / 깃 풀] | 원격으로 올리기 / 원격에서 받아오기 |
-| `git log --oneline`<br>[깃 로그 대시대시 원라인] | 커밋 기록 한 줄씩 보기 |
-| `git remote -v`<br>[깃 리모트 대시 브이] | 연결된 원격 저장소 주소 확인 |
-| `git reset HEAD~1`<br>[깃 리셋 헤드 틸드 원] | 마지막 커밋 취소 (파일 변경은 유지) |
+| `git` $`\color{red}{\vee}`$ `config` $`\color{red}{\vee}`$ `--global` $`\color{red}{\vee}`$<br>`user.name` / `user.email`<br>[깃 컨피그 대시대시 글로벌 유저 점 네임 / 이메일] | 커밋 작성자 정보 설정 |
+| `git` $`\color{red}{\vee}`$ `config` $`\color{red}{\vee}`$ `--global` $`\color{red}{\vee}`$<br>`init.defaultBranch` $`\color{red}{\vee}`$ `main`<br>[깃 컨피그 … 이닛 점 디폴트브랜치 메인] | 기본 브랜치 이름을 main 으로 |
+| `git` $`\color{red}{\vee}`$ `config` $`\color{red}{\vee}`$ `--list`<br>[깃 컨피그 대시대시 리스트] | 설정 전체 확인 |
+| `git` $`\color{red}{\vee}`$ `init`<br>[깃 이닛] | 현재 폴더를 Git 저장소로 만들기 |
+| `git` $`\color{red}{\vee}`$ `clone`<br>[깃 클론] | 원격 저장소를 통째로 복사 |
+| `git` $`\color{red}{\vee}`$ `status`<br>[깃 스테이터스] | 변경 상태 확인 |
+| `git` $`\color{red}{\vee}`$ `add` $`\color{red}{\vee}`$ `.`<br>[깃 애드 점] | 변경 파일 전부 스테이징 |
+| `git` $`\color{red}{\vee}`$ `commit` $`\color{red}{\vee}`$ `-m` $`\color{red}{\vee}`$ `"메시지"`<br>[깃 커밋 대시 엠] | 커밋 생성 |
+| `git` $`\color{red}{\vee}`$ `push` /<br>`git` $`\color{red}{\vee}`$ `pull`<br>[깃 푸시 / 깃 풀] | 원격으로 올리기 / 원격에서 받아오기 |
+| `git` $`\color{red}{\vee}`$ `log` $`\color{red}{\vee}`$ `--oneline`<br>[깃 로그 대시대시 원라인] | 커밋 기록 한 줄씩 보기 |
+| `git` $`\color{red}{\vee}`$ `remote` $`\color{red}{\vee}`$ `-v`<br>[깃 리모트 대시 브이] | 연결된 원격 저장소 주소 확인 |
+| `git` $`\color{red}{\vee}`$ `reset` $`\color{red}{\vee}`$ `HEAD~1`<br>[깃 리셋 헤드 틸드 원] | 마지막 커밋 취소 (파일 변경은 유지) |
 | `.gitignore`<br>[깃이그노어] | Git 이 추적하지 않을 파일 목록 |
 | HTTPS / SSH<br>[에이치티티피에스 / 에스에스에이치] | GitHub 인증 방식:<br>로그인·토큰 / 키 쌍(공개키 등록) |
 | 공개키 / 개인키<br>[퍼블릭 키 / 프라이빗 키] | GitHub 에 등록하는 키(`.pub`)<br>/ 절대 공유하지 않는 키 |
