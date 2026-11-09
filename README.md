@@ -23,23 +23,24 @@
 2. [핵심 질문 (스스로 설명할 6가지)](#2-핵심-질문-스스로-설명할-6가지)
 3. [프로젝트 개요 및 산출물 구성](#3-프로젝트-개요-및-산출물-구성)
 4. [폴더 구조](#4-폴더-구조)
-5. [기술 스택 및 실행 환경](#5-기술-스택-및-실행-환경)
-6. [사용 이미지 및 출처](#6-사용-이미지-및-출처)
-7. [검증 방법 및 핵심 개념 요약](#7-검증-방법-및-핵심-개념-요약)
-8. [전체 작업 순서 (STEP 1-14)](#8-전체-작업-순서-step-1-14)
-9. [작업 흐름도](#9-작업-흐름도)
-10. [Docker 연결 구조 (포트·마운트·볼륨)](#10-docker-연결-구조-포트마운트볼륨)
-11. [핵심 실습 결과](#11-핵심-실습-결과)
-12. [보너스 과제](#12-보너스-과제)
-13. [로컬 실행 방법](#13-로컬-실행-방법)
-14. [환경 변수 및 포트 설정](#14-환경-변수-및-포트-설정)
-15. [실습 중 발생한 오류와 해결](#15-실습-중-발생한-오류와-해결)
-16. [AI(Claude) 사용 로그 요약](#16-aiclaude-사용-로그-요약)
-17. [기능요구사항 대비 결과](#17-기능요구사항-대비-결과)
-18. [결론 및 한계점](#18-결론-및-한계점)
-19. [보안 유의사항](#19-보안-유의사항)
-20. [이미지·도구 출처 및 라이선스 유의사항](#20-이미지도구-출처-및-라이선스-유의사항)
-21. [기타](#21-기타)
+5. [용어 설명 (초보자를 위한 참고)](#5-용어-설명-초보자를-위한-참고)
+6. [기술 스택 및 실행 환경](#6-기술-스택-및-실행-환경)
+7. [사용 이미지 및 출처](#7-사용-이미지-및-출처)
+8. [검증 방법 및 핵심 개념 요약](#8-검증-방법-및-핵심-개념-요약)
+9. [전체 작업 순서 (STEP 1-14)](#9-전체-작업-순서-step-1-14)
+10. [작업 흐름도](#10-작업-흐름도)
+11. [Docker 연결 구조 (포트·마운트·볼륨)](#11-docker-연결-구조-포트마운트볼륨)
+12. [핵심 실습 결과](#12-핵심-실습-결과)
+13. [보너스 과제](#13-보너스-과제)
+14. [로컬 실행 방법](#14-로컬-실행-방법)
+15. [환경 변수 및 포트 설정](#15-환경-변수-및-포트-설정)
+16. [실습 중 발생한 오류와 해결](#16-실습-중-발생한-오류와-해결)
+17. [AI(Claude) 사용 로그 요약](#17-aiclaude-사용-로그-요약)
+18. [기능요구사항 대비 결과](#18-기능요구사항-대비-결과)
+19. [결론 및 한계점](#19-결론-및-한계점)
+20. [보안 유의사항](#20-보안-유의사항)
+21. [이미지·도구 출처 및 라이선스 유의사항](#21-이미지도구-출처-및-라이선스-유의사항)
+22. [기타](#22-기타)
 
 ---
 
@@ -71,7 +72,7 @@
 6. Git 과 GitHub 의 역할은 어떻게 다른가?
     - **답:** Git 은 내 컴퓨터에서 변경 이력을 관리하는 로컬 버전 관리 도구이고, GitHub 는 Git 저장소를 인터넷에 올려 공유·협업하는 원격 플랫폼이다.
 
-> 자세한 설명은 [7장](#7-검증-방법-및-핵심-개념-요약)에, 직접 확인한 결과는 [11장](#11-핵심-실습-결과)에 정리했습니다.
+> 자세한 설명은 [8장](#8-검증-방법-및-핵심-개념-요약)에, 직접 확인한 결과는 [12장](#12-핵심-실습-결과)에 정리했습니다.
 
 ---
 
@@ -82,12 +83,12 @@
 | 1 | 제출 저장소 | 본 저장소 (공개) |
 | 2 | 기술 문서 | `README.md` (본 문서) |
 | 3 | 터미널 조작 로그 | [`01_terminal.md`](docs/logs/01_terminal.md), [`02_permission.md`](docs/logs/02_permission.md) |
-| 4 | Docker 운영/검증 로그 | [`03_docker_check.md`](docs/logs/03_docker_check.md), [`04_docker_ops.md`](docs/logs/04_docker_ops.md) |
-| 5 | Dockerfile 기반 웹 서버 | [`app/Dockerfile`](app/Dockerfile), [`app/site/`](app/site/), [`05_build_run.md`](docs/logs/05_build_run.md) |
-| 6 | 포트 매핑 접속 증거 | [11-6](#11-6-포트-매핑-접속) 스크린샷 2장 |
+| 4 | Docker 운영/검증 로그 | [`03_docker_check.md`](docs/logs/03_docker_check.md),<br>[`04_docker_ops.md`](docs/logs/04_docker_ops.md) |
+| 5 | Dockerfile 기반 웹 서버 | [`app/Dockerfile`](app/Dockerfile), [`app/site/`](app/site/),<br>[`05_build_run.md`](docs/logs/05_build_run.md) |
+| 6 | 포트 매핑 접속 증거 | [12-6](#12-6-포트-매핑-접속) 스크린샷 2장 |
 | 7 | 바인드 마운트 + 볼륨 증거 | [`06_bind_mount.md`](docs/logs/06_bind_mount.md), [`07_volume.md`](docs/logs/07_volume.md) |
-| 7-1 | 포트 충돌 진단·해제 증거 | [`10_port_check.md`](docs/logs/10_port_check.md), [11-10](#11-10-포트-충돌-진단-및-해제) |
-| 8 | Git 설정 + GitHub/VSCode 연동 증거 | [`08_git.md`](docs/logs/08_git.md), [11-9](#11-9-git-설정-및-github-연동) 스크린샷 |
+| 7-1 | 포트 충돌 진단·해제 증거 | [`10_port_check.md`](docs/logs/10_port_check.md), [12-10](#12-10-포트-충돌-진단-및-해제) |
+| 8 | Git 설정 + GitHub/VSCode 연동 증거 | [`08_git.md`](docs/logs/08_git.md), [12-9](#12-9-git-설정-및-github-연동) 스크린샷 |
 
 ---
 
@@ -125,7 +126,7 @@ E1-1/
 
 ---
 
-## 용어 설명 (초보자를 위한 참고)
+## 5. 용어 설명 (초보자를 위한 참고)
 
 이 미션에서 사용한 CLI·Git·Docker 용어와 명령을 한 줄씩 정리했습니다.
 
@@ -170,7 +171,7 @@ E1-1/
 | `ls -l` | 파일 권한 확인 (맨 앞 `-` 파일, `d` 디렉토리) |
 | `ls -ld` | 디렉토리 자체의 권한 확인 |
 | `chmod` | 권한 변경 (`chmod 755 파일`, `chmod u+x 파일`) |
-| 특수 권한 비트 | setuid(4000, 실행 시 소유자 권한), setgid(2000, 그룹 권한), sticky(1000, `/tmp` 처럼 내 파일만 지울 수 있게) |
+| 특수 권한 비트 | setuid(4000, 실행 시 소유자 권한), setgid(2000, 그룹 권한),<br>sticky(1000, `/tmp` 처럼 내 파일만 지울 수 있게) |
 | `sudo` | 관리자(root) 권한으로 명령 실행 |
 | Permission denied | 권한이 없어서 거부됨 |
 
@@ -181,10 +182,10 @@ E1-1/
 | 컨테이너 | 이미지를 실행한 격리된 실행 환경 |
 | 이미지 | 컨테이너를 만드는 읽기 전용 템플릿 |
 | 레지스트리 / Docker Hub | 이미지를 저장·공유하는 저장소 |
-| 태그 | 이미지 버전 이름 (`nginx:1.27-alpine` 의 `1.27-alpine`, 생략 시 `latest`) |
-| 데몬 (엔진) | 컨테이너를 실제로 관리하는 백그라운드 프로그램 (`dockerd`) |
+| 태그 | 이미지 버전 이름<br>(`nginx:1.27-alpine` 의 `1.27-alpine`, 생략 시 `latest`) |
+| 데몬 (엔진) | 컨테이너를 실제로 관리하는<br>백그라운드 프로그램 (`dockerd`) |
 | 호스트 | Docker 가 설치되어 돌아가는 실제 컴퓨터 |
-| 격리 | 컨테이너끼리, 그리고 호스트와 분리되어 서로 영향을 주지 않음 |
+| 격리 | 컨테이너끼리, 그리고 호스트와<br>분리되어 서로 영향을 주지 않음 |
 | 재현성 | 언제 어디서 실행해도 같은 결과가 나오는 성질 |
 | `docker --version` | 설치 및 버전 확인 |
 | `docker info` | 데몬 동작 여부 확인 |
@@ -197,7 +198,7 @@ E1-1/
 | `docker rmi` | 이미지 삭제 |
 | `docker logs` | 컨테이너 출력 로그 확인 (`-f` 실시간) |
 | `docker stats` | CPU·메모리 사용량 확인 (`--no-stream` 한 번만) |
-| `docker exec -it 이름 bash` | 실행 중인 컨테이너에 새 bash 열기 (exit 해도 컨테이너 유지) |
+| `docker exec -it 이름 bash` | 실행 중인 컨테이너에 새 bash 열기<br>(exit 해도 컨테이너 유지) |
 | `docker attach` | 메인 프로세스에 연결 (exit 하면 컨테이너 종료) |
 | `docker inspect` | 컨테이너/이미지 상세 정보 (JSON) |
 | `-d` | 백그라운드 실행 (detached) |
@@ -232,17 +233,17 @@ E1-1/
 
 | 용어 / 명령 | 뜻 |
 | --- | --- |
-| 포트 | 한 컴퓨터 안에서 프로그램을 구분하는 번호 (웹 80, 8080) |
+| 포트 | 한 컴퓨터 안에서 프로그램을<br>구분하는 번호 (웹 80, 8080) |
 | 포트 매핑 | 호스트 포트를 컨테이너 포트에 연결 |
-| `-p 8080:80` | 호스트 8080 → 컨테이너 80 (순서: 호스트:컨테이너) |
+| `-p 8080:80` | 호스트 8080 → 컨테이너 80<br>(순서: 호스트:컨테이너) |
 | localhost | 내 컴퓨터 자신 (127.0.0.1) |
 | port is already allocated | 호스트 포트가 이미 사용 중이라는 오류 |
 | `ss -ltnp` / `lsof -i :포트` | 포트를 점유한 프로세스(PID) 확인 |
 | `kill PID` | 프로세스 종료 (강제는 `kill -9`) |
-| 네트워크 네임스페이스 | 컨테이너마다 분리된 네트워크 공간 (그래서 포트 매핑이 필요) |
-| 바인드 마운트 | 호스트의 특정 폴더를 컨테이너에 연결 → 변경 즉시 반영 |
+| 네트워크 네임스페이스 | 컨테이너마다 분리된 네트워크 공간<br>(그래서 포트 매핑이 필요) |
+| 바인드 마운트 | 호스트의 특정 폴더를 컨테이너에 연결<br>→ 변경 즉시 반영 |
 | `-v $(pwd)/site:/usr/share/nginx/html` | 바인드 마운트 (호스트 경로:컨테이너 경로) |
-| 볼륨 | Docker 가 관리하는 저장 공간 → 컨테이너를 지워도 데이터 유지 |
+| 볼륨 | Docker 가 관리하는 저장 공간<br>→ 컨테이너를 지워도 데이터 유지 |
 | 영속성 | 컨테이너가 사라져도 데이터가 남는 성질 |
 | `docker volume create` | 볼륨 생성 |
 | `docker volume ls` / `inspect` / `rm` | 볼륨 목록 / 상세 / 삭제 |
@@ -255,7 +256,7 @@ E1-1/
 | Docker Compose | 여러 컨테이너 실행 설정을 YAML 파일 하나로 관리하는 도구 |
 | `docker-compose.yml` | Compose 설정 파일 |
 | 서비스 (services) | Compose 에서 실행할 컨테이너 단위 (`web`, `checker`) |
-| 서비스 디스커버리 | 같은 Compose 네트워크에서 서비스 이름으로 접속 (`http://web/`) |
+| 서비스 디스커버리 | 같은 Compose 네트워크에서<br>서비스 이름으로 접속 (`http://web/`) |
 | `docker compose up -d` | 전체 서비스 실행 (`--build` 이미지 다시 빌드) |
 | `docker compose ps` | 서비스 상태 |
 | `docker compose logs` | 서비스 로그 |
@@ -265,13 +266,13 @@ E1-1/
 
 | 용어 / 명령 | 뜻 |
 | --- | --- |
-| Git | 로컬에서 파일 변경 이력을 관리하는 버전 관리 도구 |
-| GitHub | Git 저장소를 온라인에 올려 공유·협업하는 원격 플랫폼 |
+| Git | 로컬에서 파일 변경 이력을<br>관리하는 버전 관리 도구 |
+| GitHub | Git 저장소를 온라인에 올려<br>공유·협업하는 원격 플랫폼 |
 | 저장소 (Repository) | 프로젝트 파일 + 변경 이력 |
-| 로컬 / 원격 (remote) | 내 컴퓨터의 저장소 / GitHub 의 저장소 |
+| 로컬 / 원격 (remote) | 내 컴퓨터의 저장소<br>/ GitHub 의 저장소 |
 | origin | 원격 저장소의 기본 별칭 |
-| 커밋 (commit) | 변경 내용을 저장한 기록(세이브 포인트) |
-| 스테이징 영역 | 커밋할 파일을 모아 두는 곳 (`git add`) |
+| 커밋 (commit) | 변경 내용을 저장한<br>기록(세이브 포인트) |
+| 스테이징 영역 | 커밋할 파일을 모아 두는 곳<br>(`git add`) |
 | 브랜치 (branch) | 독립된 작업 흐름, 기본 이름 `main` |
 | `git config --global user.name / user.email` | 커밋 작성자 정보 설정 |
 | `git config --global init.defaultBranch main` | 기본 브랜치 이름을 main 으로 |
@@ -281,24 +282,24 @@ E1-1/
 | `git status` | 변경 상태 확인 |
 | `git add .` | 변경 파일 전부 스테이징 |
 | `git commit -m "메시지"` | 커밋 생성 |
-| `git push` / `git pull` | 원격으로 올리기 / 원격에서 받아오기 |
+| `git push` /<br>`git pull` | 원격으로 올리기 / 원격에서 받아오기 |
 | `git log --oneline` | 커밋 기록 한 줄씩 보기 |
 | `git remote -v` | 연결된 원격 저장소 주소 확인 |
 | `git reset HEAD~1` | 마지막 커밋 취소 (파일 변경은 유지) |
 | `.gitignore` | Git 이 추적하지 않을 파일 목록 |
-| HTTPS / SSH | GitHub 인증 방식: 로그인·토큰 / 키 쌍(공개키 등록) |
-| 공개키 / 개인키 | GitHub 에 등록하는 키(`.pub`) / 절대 공유하지 않는 키 |
+| HTTPS / SSH | GitHub 인증 방식:<br>로그인·토큰 / 키 쌍(공개키 등록) |
+| 공개키 / 개인키 | GitHub 에 등록하는 키(`.pub`)<br>/ 절대 공유하지 않는 키 |
 | 403 | 권한 없음 (push 거부) |
-| Codespaces | GitHub 가 제공하는 브라우저 기반 클라우드 개발 환경 |
+| Codespaces | GitHub 가 제공하는<br>브라우저 기반 클라우드 개발 환경 |
 
 ---
 
-## 5. 기술 스택 및 실행 환경
+## 6. 기술 스택 및 실행 환경
 
 | 구분 | 사용 기술 |
 |---|---|
 | CLI | bash, coreutils (`ls`, `cp`, `mv`, `chmod` …), `curl` |
-| 컨테이너 | Docker Desktop (WSL2 백엔드), Docker Engine, Docker Compose, Dockerfile |
+| 컨테이너 | Docker Desktop (WSL2 백엔드),<br>Docker Engine, Docker Compose, Dockerfile |
 | 웹 서버 | NGINX (`nginx:1.27-alpine`) |
 | 버전 관리 | Git, GitHub |
 | 리눅스 환경 | WSL2 (Windows Subsystem for Linux) + Ubuntu |
@@ -309,71 +310,71 @@ E1-1/
 
 | 항목 | 값 | 근거 |
 |---|---|:---:|
-| 작업 환경 | Windows + WSL2(Ubuntu) + Docker Desktop + VSCode(WSL 연결) | — |
+| 작업 환경 | Windows + WSL2(Ubuntu)<br>+ Docker Desktop + VSCode(WSL 연결) | — |
 | Windows | Microsoft Windows [Version 10.0.26200] | [`00_env.md`](docs/logs/00_env.md) |
-| OS (WSL) | Ubuntu 26.04.1 LTS (x86_64), 커널 6.18.54.1-microsoft-standard-WSL2 | [`00_env.md`](docs/logs/00_env.md) |
+| OS (WSL) | Ubuntu 26.04.1 LTS (x86_64),<br>커널 6.18.54.1-microsoft-standard-WSL2 | [`00_env.md`](docs/logs/00_env.md) |
 | Shell | GNU bash 5.3.9 | [`00_env.md`](docs/logs/00_env.md) |
-| Terminal | VSCode 통합 터미널 (WSL: Ubuntu, `TERM_PROGRAM=vscode`) | [`00_env.md`](docs/logs/00_env.md) |
-| Docker | Docker version 29.9.2 (Server 29.9.2, Docker Desktop 4.98.0) | [`03_docker_check.md`](docs/logs/03_docker_check.md) |
+| Terminal | VSCode 통합 터미널 (WSL: Ubuntu,<br>`TERM_PROGRAM=vscode`) | [`00_env.md`](docs/logs/00_env.md) |
+| Docker | Docker version 29.9.2 (Server 29.9.2,<br>Docker Desktop 4.98.0) | [`03_docker_check.md`](docs/logs/03_docker_check.md) |
 | Git | git version 2.53.0 | [`00_env.md`](docs/logs/00_env.md) |
 
 ---
 
-## 6. 사용 이미지 및 출처
+## 7. 사용 이미지 및 출처
 
 | 이미지 | 용도 | 출처 |
 |---|---|---|
 | `hello-world` | Docker 설치·실행 확인 | Docker Hub 공식 이미지 |
-| `ubuntu:24.04` | 컨테이너 진입, attach/exec 관찰, 볼륨 검증 | Docker Hub 공식 이미지 |
-| `nginx:1.27-alpine` | 커스텀 이미지의 베이스, 바인드 마운트 실습 | Docker Hub 공식 이미지 |
-| `alpine:3.20` | 보너스 Compose 의 보조 서비스(checker) | Docker Hub 공식 이미지 |
-| `my-web:1.0` | **직접 만든 커스텀 이미지** (`app/Dockerfile`) | 본 저장소 |
+| `ubuntu:24.04` | 컨테이너 진입,<br>attach/exec 관찰, 볼륨 검증 | Docker Hub 공식 이미지 |
+| `nginx:1.27-alpine` | 커스텀 이미지의 베이스,<br>바인드 마운트 실습 | Docker Hub 공식 이미지 |
+| `alpine:3.20` | 보너스 Compose 의<br>보조 서비스(checker) | Docker Hub 공식 이미지 |
+| `my-web:1.0` | **직접 만든 커스텀 이미지**<br>(`app/Dockerfile`) | 본 저장소 |
 
 - 태그를 `latest` 대신 버전으로 고정(`1.27-alpine`, `24.04`)해, 나중에 다시 실행해도 같은 버전이 내려오도록 했습니다 (재현성).
 
 ---
 
-## 7. 검증 방법 및 핵심 개념 요약
+## 8. 검증 방법 및 핵심 개념 요약
 
 **검증 원칙:** 모든 실습은 `scripts/` 의 스크립트로 실행하고, 스크립트가 "입력 명령 + 출력 결과"를 코드블록으로 `docs/logs/*.md` 에 자동 저장합니다. 명령이 실패하면 즉시 멈추므로, 로그가 끝까지 있다는 것 자체가 성공의 증거입니다. 대화형(`-it`) 실습과 브라우저 접속은 스크린샷으로 남겼습니다.
 
 | 핵심 질문 | 한 줄 답 | 확인한 결과 |
 |---|---|---|
-| 절대 vs 상대 경로 | 절대 경로는 `/` 부터 시작해 어디서나 같은 곳, 상대 경로는 현재 위치 기준(`./`, `../`) | `cd ..` → `cd ./practice` 후 `pwd` 비교 |
-| r/w/x, 755·644 | r=4, w=2, x=1 을 더해 소유자/그룹/기타 순서로 표기. 755=`rwxr-xr-x`, 644=`rw-r--r--` | 폴더 x 를 빼자 `cd` 시 `Permission denied` |
-| 커스텀 이미지 | 베이스 이미지(`FROM`) 위에 내 파일·설정(`COPY`, `ENV`, `LABEL`, `HEALTHCHECK`)을 더해 빌드 | `my-web:1.0` 빌드, `healthy`, `APP_ENV=dev` |
-| 포트 매핑 | 컨테이너는 격리된 네트워크라 밖에서 직접 못 들어감 → `-p 호스트:컨테이너` 로 연결 | 같은 이미지로 8080, 8081 두 번 접속 |
-| 볼륨 | Docker 가 관리하는 저장소. 컨테이너를 지워도 데이터 유지(영속성). 바인드 마운트는 내 폴더를 연결해 변경 즉시 반영 | 컨테이너 삭제 후 새 컨테이너에서 `hi` 확인 |
-| Git vs GitHub | Git 은 로컬 버전 관리 도구, GitHub 는 원격 저장소·협업 플랫폼 | 로컬 커밋 → `git push` 로 GitHub 반영 |
+| 절대 vs 상대 경로 | 절대 경로는 `/` 부터<br>시작해 어디서나 같은 곳,<br>상대 경로는 현재 위치<br>기준(`./`, `../`) | `cd ..` → `cd ./practice`<br>후 `pwd` 비교 |
+| r/w/x, 755·644 | r=4, w=2, x=1 을 더해<br>소유자/그룹/기타 순서로<br>표기. 755=`rwxr-xr-x`,<br>644=`rw-r--r--` | 폴더 x 를 빼자 `cd` 시<br>`Permission denied` |
+| 커스텀 이미지 | 베이스 이미지(`FROM`)<br>위에 내 파일·설정(`COPY`,<br>`ENV`, `LABEL`,<br>`HEALTHCHECK`)을 더해 빌드 | `my-web:1.0` 빌드,<br>`healthy`, `APP_ENV=dev` |
+| 포트 매핑 | 컨테이너는 격리된<br>네트워크라 밖에서 직접<br>못 들어감<br>→ `-p 호스트:컨테이너` 로 연결 | 같은 이미지로 8080,<br>8081 두 번 접속 |
+| 볼륨 | Docker 가 관리하는 저장소.<br>컨테이너를 지워도 데이터<br>유지(영속성). 바인드 마운트는<br>내 폴더를 연결해 변경 즉시 반영 | 컨테이너 삭제 후 새<br>컨테이너에서 `hi` 확인 |
+| Git vs GitHub | Git 은 로컬 버전 관리 도구,<br>GitHub 는 원격 저장소·협업 플랫폼 | 로컬 커밋<br>→ `git push` 로 GitHub 반영 |
 
 ---
 
-## 8. 전체 작업 순서 (STEP 1-14)
+## 9. 전체 작업 순서 (STEP 1-14)
 
 | STEP | 작업 내용 | 증빙 |
 |:---:|---|:---:|
 | 1 | 미션 분석, GitHub 저장소 생성 | — |
-| 2 | 폴더 구조·자동화 스크립트·Dockerfile·`.gitignore` 구성 | [4장](#4-폴더-구조) |
-| 3 | 실행 환경 준비 (WSL2 + Docker Desktop + VSCode 설치, SSH 키 등록) | [`SETUP.md`](docs/SETUP.md), 스크린샷 3장 |
+| 2 | 폴더 구조·자동화<br>스크립트·Dockerfile·`.gitignore` 구성 | [4장](#4-폴더-구조) |
+| 3 | 실행 환경 준비 (WSL2 + Docker Desktop<br>+ VSCode 설치, SSH 키 등록) | [`SETUP.md`](docs/SETUP.md), 스크린샷 3장 |
 | 4 | 실행 환경 기록 | `00_env.md` |
-| 5 | 터미널 기본 조작 (위치·목록·이동·생성·복사·이름변경·삭제) | `01_terminal.md` |
-| 6 | 권한 실습 (파일 644→755, 디렉토리 755→700, x 제거 실험) | `02_permission.md` |
+| 5 | 터미널 기본 조작<br>(위치·목록·이동·생성·복사·이름변경·삭제) | `01_terminal.md` |
+| 6 | 권한 실습 (파일 644→755,<br>디렉토리 755→700, x 제거 실험) | `02_permission.md` |
 | 7 | Docker 설치·점검 (`--version`, `info`) | `03_docker_check.md` |
-| 8 | Docker 운영 명령 + hello-world + ubuntu 진입 + attach/exec 관찰 | `04_docker_ops.md`, 스크린샷 3장 |
+| 8 | Docker 운영 명령 + hello-world<br>+ ubuntu 진입 + attach/exec 관찰 | `04_docker_ops.md`, 스크린샷 3장 |
 | 9 | Dockerfile 커스텀 이미지 빌드 | `05_build_run.md` |
 | 10 | 포트 매핑 2회 실행 + 브라우저 접속 | `05_build_run.md`, 스크린샷 2장 |
 | 11 | 바인드 마운트 변경 반영 검증 | `06_bind_mount.md` |
 | 12 | 볼륨 영속성 검증 | `07_volume.md` |
-| 13 | Git 설정 + VSCode GitHub 연동 + 보너스 Compose·SSH | `08_git.md`, `09_compose.md`, 스크린샷 2장 |
+| 13 | Git 설정 + VSCode GitHub 연동<br>+ 보너스 Compose·SSH | `08_git.md`, `09_compose.md`,<br>스크린샷 2장 |
 | 14 | README 작성, 민감정보 마스킹, 최종 제출 | 본 문서 |
 
 ---
 
-## 9. 작업 흐름도
+## 10. 작업 흐름도
 
 **목적:** 이 미션은 "환경 준비 → 실습 → 증거 수집 → 문서화"가 반복되는 구조다. 어떤 단계에서 어떤 증거가 만들어지는지 한눈에 보이도록 정리했다.
 
-### 9-1. 전체 진행 흐름
+### 10-1. 전체 진행 흐름
 
 **설명:** ①·② 의 스크립트 실행(00~07)과 ③ 의 08~10 이 로그를 자동으로 만들고, 대화형 실습과 브라우저 접속(K)은 스크린샷으로 보완한 뒤, 모두 GitHub 에 커밋한다.
 
@@ -394,7 +395,7 @@ flowchart TB
     R1 --> R2 --> R3
 ```
 
-### 9-2. 스크립트 한 줄이 로그가 되는 과정
+### 10-2. 스크립트 한 줄이 로그가 되는 과정
 
 **설명:** `run "명령"` 한 줄이 실행되면 화면 출력과 로그 기록이 동시에 일어나고, 실패하면 그 자리에서 멈춘다.
 
@@ -417,7 +418,7 @@ sequenceDiagram
 
 ---
 
-## 10. Docker 연결 구조 (포트·마운트·볼륨)
+## 11. Docker 연결 구조 (포트·마운트·볼륨)
 
 **설명:** 컨테이너는 호스트와 격리되어 있어서, 바깥과 연결하려면 네트워크는 **포트 매핑**, 파일은 **바인드 마운트** 또는 **볼륨**이라는 "문"을 직접 만들어야 한다.
 
@@ -456,13 +457,13 @@ flowchart LR
 
 ---
 
-## 11. 핵심 실습 결과
+## 12. 핵심 실습 결과
 
-### 11-1. 터미널 조작
+### 12-1. 터미널 조작
 
 `pwd`, `ls -la`(숨김 포함), `cd`(절대/상대), `mkdir -p`, `touch`, `echo >`/`>>`, `cat`, `cp`, `mv`, `rm`, `rmdir` 을 순서대로 수행했습니다. → [`01_terminal.md`](docs/logs/01_terminal.md)
 
-### 11-2. 권한 변경 (파일 1, 디렉토리 1)
+### 12-2. 권한 변경 (파일 1, 디렉토리 1)
 
 ```bash
 $ ls -l perm_file.txt          # 변경 전 644
@@ -484,7 +485,7 @@ cd: perm_dir: Permission denied
 
 파일은 실행 스크립트처럼 남도 읽고 실행할 수 있게 755 로, 디렉토리는 나만 들어갈 수 있게 700 으로 바꿔 보았습니다(개인 키·설정처럼 남이 보면 안 되는 폴더에 쓰는 값). 디렉토리에서 x(들어가기 권한)를 빼자 소유자인데도 `cd` 가 거부되었습니다. → [`02_permission.md`](docs/logs/02_permission.md)
 
-### 11-3. Docker 설치·점검 및 운영 명령
+### 12-3. Docker 설치·점검 및 운영 명령
 
 - `docker --version` → 설치 확인, `docker info` → 데몬(Server) 동작 확인 → [`03_docker_check.md`](docs/logs/03_docker_check.md)
 - `pull`, `images`, `run`, `ps`, `ps -a`, `logs`, `stats --no-stream`, `stop`, `start`, `rm` → [`04_docker_ops.md`](docs/logs/04_docker_ops.md)
@@ -495,7 +496,7 @@ Docker Desktop 설치 후 엔진 동작(`Engine running`)과 Ubuntu(WSL) 터미�
 ![Docker Desktop 실행](docs/screenshots/docker-desktop.png)
 ![Docker 버전 확인](docs/screenshots/docker-check.png)
 
-### 11-4. ubuntu 컨테이너 진입 및 attach / exec 비교
+### 12-4. ubuntu 컨테이너 진입 및 attach / exec 비교
 
 ```bash
 docker run -it --name my-ubuntu ubuntu:24.04 bash   # 프롬프트가 root@...:/# 로 바뀜
@@ -526,17 +527,17 @@ docker ps -a                      # → Exited (0)
 
 컨테이너는 메인 프로세스가 살아 있는 동안만 실행됩니다. attach 상태에서 끄지 않고 나오려면 `Ctrl+P` → `Ctrl+Q`.
 
-### 11-5. Dockerfile 커스텀 이미지 (방식 A: 웹 서버 베이스 + 정적 콘텐츠 교체)
+### 12-5. Dockerfile 커스텀 이미지 (방식 A: 웹 서버 베이스 + 정적 콘텐츠 교체)
 
 - **베이스:** `nginx:1.27-alpine` — 웹 서버가 이미 들어 있고 가벼우며, 버전을 고정해 재현성 확보
 - **Dockerfile:** [`app/Dockerfile`](app/Dockerfile)
 
-| 커스텀 포인트 | 목적 | 확인 방법 · 결과 |
+| 커스텀 포인트 | 목적 | 확인 방법과 결과 |
 |---|---|---|
-| `COPY site/ /usr/share/nginx/html/` | 기본 환영 페이지를 내 페이지로 교체 | `curl` → "Hello from my custom NGINX image (E1-1)" |
-| `ENV APP_ENV=dev` | 실행 모드 설정값 주입 | `docker exec my-web-8080 printenv APP_ENV` → `dev` |
-| `LABEL ...` | 이미지 설명 메타데이터 | `docker inspect` → title/description 표시 |
-| `HEALTHCHECK` | 10초마다 응답 검사 | `.State.Health.Status` → `healthy` |
+| `COPY site/`<br>`/usr/share/nginx/html/` | 기본 환영 페이지를<br>내 페이지로 교체 | `curl` → "Hello from my<br>custom NGINX image (E1-1)" |
+| `ENV APP_ENV=dev` | 실행 모드<br>설정값 주입 | `docker exec my-web-8080`<br>`printenv APP_ENV` → `dev` |
+| `LABEL ...` | 이미지 설명<br>메타데이터 | `docker inspect`<br>→ title, description 표시 |
+| `HEALTHCHECK` | 10초마다<br>응답 검사 | `.State.Health.Status`<br>→ `healthy` |
 
 ```bash
 $ docker build -t my-web:1.0 .
@@ -547,7 +548,7 @@ my-web:1.0   b4547f8e84e7       73.6MB           21MB
 
 → [`05_build_run.md`](docs/logs/05_build_run.md)
 
-### 11-6. 포트 매핑 접속
+### 12-6. 포트 매핑 접속
 
 ```bash
 $ docker run -d -p 8080:80 --name my-web-8080 my-web:1.0
@@ -562,7 +563,7 @@ $ docker ps --filter name=my-web
 ![8080 접속](docs/screenshots/port-8080.png)
 ![8081 접속](docs/screenshots/port-8081.png)
 
-### 11-7. 바인드 마운트 (변경 반영)
+### 12-7. 바인드 마운트 (변경 반영)
 
 ```bash
 $ docker run -d -p 8082:80 --name bind-test -v "$(pwd)/site":/usr/share/nginx/html nginx:1.27-alpine
@@ -575,7 +576,7 @@ $ curl -s http://localhost:8082
 
 → [`06_bind_mount.md`](docs/logs/06_bind_mount.md)
 
-### 11-8. 볼륨 (영속성)
+### 12-8. 볼륨 (영속성)
 
 ```bash
 $ docker volume create mydata
@@ -590,7 +591,7 @@ hi                                                                 # 데이터 �
 
 → [`07_volume.md`](docs/logs/07_volume.md)
 
-### 11-9. Git 설정 및 GitHub 연동
+### 12-9. Git 설정 및 GitHub 연동
 
 - `git config --global user.name / user.email / init.defaultBranch main` 설정 후 `git config --list` 기록 → [`08_git.md`](docs/logs/08_git.md)
 - VSCode(WSL: Ubuntu 연결)에 GitHub 계정으로 로그인해 저장소와 연동했습니다.
@@ -601,39 +602,41 @@ hi                                                                 # 데이터 �
 ![VSCode GitHub 연동](docs/screenshots/vscode-github.png)
 ![SSH 연결 확인](docs/screenshots/ssh-github.png)
 
-### 11-10. 포트 충돌 진단 및 해제
+### 12-10. 포트 충돌 진단 및 해제
 
 같은 호스트 포트를 두 프로그램이 동시에 쓸 수 없습니다. 충돌을 일부러 만들고 **확인 → 원인 찾기 → 해제 → 재확인** 순서로 처리했습니다. → [`10_port_check.md`](docs/logs/10_port_check.md) · 실행: `bash scripts/10_port_check.sh`
 
-| 단계 | 컨테이너가 포트를 쓰는 경우 | 일반 프로세스가 포트를 쓰는 경우 |
+| 단계 | 컨테이너가<br>포트를 쓰는 경우 | 일반 프로세스가<br>포트를 쓰는 경우 |
 |---|---|---|
-| ① 증상 | `docker run -p 8085:80 ...` → `port is already allocated` | 서버 실행 → `Address already in use` |
-| ② 누가 쓰는지 확인 | `docker ps --filter publish=8085`<br/>`docker port <컨테이너>` | `ss -ltnp \| grep :8099`<br/>(또는 `lsof -i :8099`) → PID 확인 |
-| ③ 해제 | `docker stop <컨테이너>` → `docker rm <컨테이너>` | `kill <PID>` (응답이 없을 때만 `kill -9 <PID>`) |
-| ④ 재확인 | 다시 `docker run` → `curl -s -o /dev/null -w '%{http_code}' localhost:8085` → `200` | `ss -ltnp \| grep :8099` 결과 없음 |
+| ① 증상 | `docker run -p 8085:80 ...`<br>→ `port is already allocated` | 서버 실행<br>→ `Address already in use` |
+| ② 누가 쓰는지<br>확인 | `docker ps --filter publish=8085`<br>`docker port <컨테이너>` | `ss -ltnp \| grep :8099`<br>또는 `lsof -i :8099`<br>→ PID 확인 |
+| ③ 해제 | `docker stop <컨테이너>`<br>→ `docker rm <컨테이너>` | `kill <PID>`<br>(응답이 없을 때만<br>`kill -9 <PID>`) |
+| ④ 재확인 | 다시 `docker run`<br>→ 아래 `curl` 명령<br>→ `200` | `ss -ltnp \| grep :8099`<br>결과 없음 |
+
+④의 `curl` 명령: `curl -s -o /dev/null -w '%{http_code}' localhost:8085`
 
 - **Windows (PowerShell) 에서는:** `netstat -ano | findstr :8080` 으로 PID 를 찾고 `taskkill /PID <PID>` 로 종료합니다. Docker Desktop 이 연 포트라면 프로세스를 죽이지 말고 해당 컨테이너를 `docker stop` 합니다.
 - **안전한 해제 원칙:** 무엇이 쓰고 있는지 먼저 확인하고, 내가 띄운 컨테이너·프로세스만 정상 종료(`stop`, `kill`)한다. 모르는 프로세스는 강제 종료하지 않고 다른 포트(예: 8081)를 쓴다.
 
 ---
 
-## 12. 보너스 과제
+## 13. 보너스 과제
 
 설정: [`compose/docker-compose.yml`](compose/docker-compose.yml) · 실행: [`scripts/09_compose.sh`](scripts/09_compose.sh) · 로그: [`09_compose.md`](docs/logs/09_compose.md)
 
-| # | 과제 | 수행 내용 | 확인 결과 | 달성 |
-|:---:|---|---|---|:---:|
-| 1 | Compose 기초 | `docker run` 옵션(이미지·포트·환경 변수)을 `docker-compose.yml` 로 문서화 | `docker compose up -d --build` 로 web 서비스 빌드·실행 | ✅ |
-| 2 | 멀티 컨테이너 | `web`(내 nginx) + `checker`(alpine) | checker 가 `http://web/` 으로 접속해 내 페이지 수신 → 컨테이너 간 통신 성공 | ✅ |
-| 3 | 운영 명령어 | `up` → `ps` → `logs` → `down` → `ps` | 두 서비스 Up, web `(healthy)` / down 후 목록 비어 있음 | ✅ |
-| 4 | 환경 변수 | `APP_ENV=dev WEB_PORT=8090 docker compose up -d` | `printenv APP_ENV` → `dev`, `localhost:8090` 응답 | ✅ |
-| 5 | GitHub SSH 키 | `ssh-keygen -t ed25519` → 공개키(`.pub`)를 GitHub 에 등록 → SSH 주소로 clone | `ssh -T git@github.com` → `Hi …! You've successfully authenticated`, 서버 지문 `SHA256:+DiY3wvv…` 이 GitHub 공개 값과 일치 | ✅ |
+| 과제 (달성) | 수행 내용 | 확인 결과 |
+|---|---|---|
+| 1. Compose<br>기초 ✅ | `docker run` 옵션<br>(이미지, 포트, 환경 변수)을<br>`docker-compose.yml`로<br>문서화 | `docker compose up`<br>`-d --build`로<br>web 서비스 빌드, 실행 |
+| 2. 멀티<br>컨테이너 ✅ | `web`(내 nginx)<br>+ `checker`(alpine) | checker가<br>`http://web/`으로 접속해 내 페이지 수신<br>→ 컨테이너 간 통신 성공 |
+| 3. 운영<br>명령어 ✅ | `up` → `ps` → `logs`<br>→ `down` → `ps` | 두 서비스 Up, web `(healthy)`<br>down 후 목록 비어 있음 |
+| 4. 환경<br>변수 ✅ | `APP_ENV=dev WEB_PORT=8090`<br>`docker compose up -d` | `printenv APP_ENV` → `dev`<br>`localhost:8090` 응답 |
+| 5. GitHub<br>SSH 키 ✅ | `ssh-keygen -t ed25519`<br>→ 공개키(`.pub`)<br>GitHub 에 등록<br>→ SSH 주소로 clone | `ssh -T git@github.com`<br>→ `Hi …! You've successfully`<br>`authenticated`<br>서버 지문 `SHA256:+DiY3wvv…`가<br>GitHub 공개 값과 일치 |
 
 **배운 점:** 실행 명령을 파일로 문서화하면 누구나 `up` 한 줄로 같은 구성을 재현할 수 있고, 포트·모드 같은 설정은 환경 변수로 분리해 코드를 고치지 않고 바꿀 수 있다.
 
 ---
 
-## 13. 로컬 실행 방법
+## 14. 로컬 실행 방법
 
 자세한 설치 방법은 [`docs/SETUP.md`](docs/SETUP.md) 를 참고하세요.
 
@@ -654,17 +657,17 @@ bash scripts/10_port_check.sh  # 포트 충돌 진단·해제
 >
 > 참고: Docker 를 설치할 수 없는 PC 라면 GitHub Codespaces 처럼 Docker 가 준비된 클라우드 개발 환경에서 같은 스크립트를 실행하는 방법도 있습니다.
 
-> 대화형 실습([11-4](#11-4-ubuntu-컨테이너-진입-및-attach--exec-비교))은 명령을 **한 줄씩** 직접 입력합니다.
+> 대화형 실습([12-4](#12-4-ubuntu-컨테이너-진입-및-attach--exec-비교))은 명령을 **한 줄씩** 직접 입력합니다.
 
 ---
 
-## 14. 환경 변수 및 포트 설정
+## 15. 환경 변수 및 포트 설정
 
 | 이름 | 위치 | 기본값 | 역할 |
 |---|---|---|---|
-| `APP_ENV` | `app/Dockerfile` (`ENV`) | `dev` | 실행 모드 표시 |
-| `APP_ENV` | `compose/docker-compose.yml` | `prod` (실행 시 `dev` 주입) | Compose 에서 모드 변경 |
-| `WEB_PORT` | `compose/docker-compose.yml` | `8090` | Compose web 서비스의 호스트 포트 |
+| `APP_ENV` | `app/Dockerfile`<br>(`ENV`) | `dev` | 실행 모드 표시 |
+| `APP_ENV` | `compose/`<br>`docker-compose.yml` | `prod`<br>(실행 시 `dev` 주입) | Compose 에서<br>모드 변경 |
+| `WEB_PORT` | `compose/`<br>`docker-compose.yml` | `8090` | Compose web<br>서비스의 호스트 포트 |
 
 | 호스트 포트 | 용도 |
 |:---:|---|
@@ -677,46 +680,46 @@ bash scripts/10_port_check.sh  # 포트 충돌 진단·해제
 
 ---
 
-## 15. 실습 중 발생한 오류와 해결
+## 16. 실습 중 발생한 오류와 해결
 
 (문제 → 원인 가설 → 확인 → 해결/대안)
 
-### 15-1. 대화형 컨테이너에 여러 줄을 붙여 넣었더니 명령이 실행되지 않음
+### 16-1. 대화형 컨테이너에 여러 줄을 붙여 넣었더니 명령이 실행되지 않음
 
 - **문제:** `docker run -it ... bash` 와 `ls`, `echo`, `exit` 를 한꺼번에 붙여 넣었더니 프롬프트만 `root@0defc4e8da2c:/#` 로 바뀌고 `ls`, `echo` 결과가 나오지 않았다.
 - **원인 가설:** 컨테이너 bash 가 준비되기 **전에** 나머지 줄이 입력되어 컨테이너로 전달되지 않았다.
 - **확인:** 컨테이너 프롬프트에서 `ls` 를 한 줄씩 다시 입력하자 `bin boot dev etc ...` 가 정상 출력됐다.
 - **해결/대안:** 대화형 컨테이너에서는 프롬프트가 바뀐 것을 확인한 뒤 **한 줄씩** 입력한다. 여러 명령을 한 번에 실행하려면 `docker run --rm ubuntu:24.04 bash -c 'ls && echo hi'` 처럼 비대화형으로 쓴다.
 
-### 15-2. 스크린샷 파일 이름이 `port-8080.png.png` 로 저장됨
+### 16-2. 스크린샷 파일 이름이 `port-8080.png.png` 로 저장됨
 
 - **문제:** README 에서 `port-8080.png` 이미지가 보이지 않았다.
 - **원인 가설:** 저장할 때 이름에 `.png` 를 직접 써서 확장자가 두 번 붙었다.
 - **확인:** 탐색기에 `port-8080.png.png` 로 표시됨.
 - **해결/대안:** `mv docs/screenshots/port-8080.png.png docs/screenshots/port-8080.png`
 
-### 15-3. WSL 설치 후 "OOBE 명령이 완료되는 것을 기다리는 중" 에서 멈춤
+### 16-3. WSL 설치 후 "OOBE 명령이 완료되는 것을 기다리는 중" 에서 멈춤
 
 - **문제:** `wsl --install` 후 재부팅하고 Ubuntu 를 열었더니 `wsl: "Ubuntu" 배포에 대해 OOBE 명령이 완료되는 것을 기다리는 중 ...` 에서 멈추고 아이디 입력 화면이 나오지 않았다.
 - **원인 가설:** OOBE(처음 사용 설정: 사용자 계정 만들기)가 다른 창에서 대기 중이거나 설치가 끝까지 진행되지 않았다.
 - **확인:** 다른 창에 계정 생성 화면이 없었고, 같은 창에서 계속 대기했다.
 - **해결/대안:** PowerShell 에서 `wsl --install -d Ubuntu` 를 실행하자 `Create a default Unix user account:` 가 나타나 계정을 만들었다. 비밀번호는 입력해도 화면에 보이지 않으며, 두 번 입력이 다르면 `Sorry, passwords do not match` 가 나와 `y` 로 다시 입력했다.
 
-### 15-4. ssh-keygen 의 저장 경로에 다음 명령이 입력됨
+### 16-4. ssh-keygen 의 저장 경로에 다음 명령이 입력됨
 
 - **문제:** `ssh-keygen` 과 `cat ~/.ssh/id_ed25519.pub` 를 함께 붙여 넣자 키 저장 경로가 `cat ~/.ssh/id_ed25519.pub` 로 입력되고, 암호(passphrase) 확인에서 `Passphrases do not match` 가 반복됐다. ([스크린샷](docs/screenshots/trouble-ssh-keygen.png))
 - **원인 가설:** `ssh-keygen` 은 질문을 하는 명령이라, 함께 붙여 넣은 두 번째 줄이 첫 질문(저장 경로)의 답으로 들어갔다.
 - **확인:** 화면에 `Enter passphrase for "cat ~/.ssh/id_ed25519.pub"` 로 표시됨.
 - **해결/대안:** `Ctrl + C` 로 취소한 뒤 `ssh-keygen -t ed25519` 한 줄만 직접 입력하고 질문 3개에 Enter 만 눌러 기본 경로(`~/.ssh/id_ed25519`)에 생성했다. 질문하는 명령은 한 줄씩 실행한다.
 
-### 15-5. 컨테이너 안에서 docker / git 명령이 "command not found"
+### 16-5. 컨테이너 안에서 docker / git 명령이 "command not found"
 
 - **문제:** `docker run -it ... bash` 로 들어간 상태에서 `docker run`, `git pull`, `bash scripts/08_git.sh` 를 입력하자 `bash: docker: command not found`, `bash: git: command not found`, `No such file or directory` 가 나왔다.
 - **원인 가설:** 프롬프트가 `root@830232cbdb8d:/#` 인 **컨테이너 안**이었다. 컨테이너는 호스트와 격리된 별도 리눅스라 docker·git·내 저장소 파일이 없다.
 - **확인:** 프롬프트가 `ilililililil4319@DESKTOP-…:~/codyssey/E1-1$`(호스트)가 아닌 `root@<컨테이너ID>:/#` 였다.
 - **해결/대안:** `exit` 로 호스트로 나온 뒤 실행했다. 명령 전에 프롬프트가 `$`(호스트)인지 `#`(컨테이너)인지 확인한다.
 
-### 15-6. 따옴표가 닫히지 않아 `>` 가 나오고 명령이 실행되지 않음
+### 16-6. 따옴표가 닫히지 않아 `>` 가 나오고 명령이 실행되지 않음
 
 - **문제:** 컨테이너 안에서 `echo "hello from inside"'exit` 를 입력하자 `>` 만 나오고, 이후 입력한 명령도 실행되지 않았다.
 - **원인 가설:** `"` 뒤에 작은따옴표 `'` 가 하나 더 들어가 따옴표가 열린 채로 남아, 쉘이 닫는 따옴표를 기다렸다.
@@ -725,51 +728,51 @@ bash scripts/10_port_check.sh  # 포트 충돌 진단·해제
 
 ---
 
-## 16. AI(Claude) 사용 로그 요약
+## 17. AI(Claude) 사용 로그 요약
 
 | 사용 작업 | 사용 이유 | 검증 방법 |
 |---|---|---|
-| 미션 분석, 폴더 구조와<br/>실습 자동화 스크립트 초안 | 반복 명령과 출력을<br/>빠짐없이 기록하기 위해 | 직접 실행해 `docs/logs/` 의<br/>명령·출력을 하나씩 확인 |
-| Dockerfile 커스텀 포인트 설계 | 베이스 이미지 선택과<br/>커스텀 목적 정리 | 빌드 성공, `healthy`,<br/>`printenv`, `inspect` 로 확인 |
-| README 구성, 용어 정리,<br/>스크린샷 아이디 마스킹 | 문서 구조화와<br/>개인정보 보호 | GitHub 에서 링크·이미지 표시 확인 |
-| 개념 학습 노트 | 비전공자로서 개념 이해 | 핵심 질문 6가지를 직접 말로 설명 |
+| 미션 분석, 폴더 구조와<br/>실습 자동화 스크립트 초안 | 반복 명령과 출력을<br/>빠짐없이 기록하기 위해 | 직접 실행해<br>`docs/logs/` 의<br/>명령·출력을 하나씩 확인 |
+| Dockerfile 커스텀 포인트 설계 | 베이스 이미지 선택과<br/>커스텀 목적 정리 | 빌드 성공,<br>`healthy`,<br/>`printenv`,<br>`inspect` 로 확인 |
+| README 구성, 용어 정리,<br/>스크린샷 아이디 마스킹 | 문서 구조화와<br/>개인정보 보호 | GitHub 에서<br>링크·이미지 표시 확인 |
+| 개념 학습 노트 | 비전공자로서 개념 이해 | 핵심 질문 6가지를<br>직접 말로 설명 |
 
 > 모든 명령은 직접 실행했고, 로그와 스크린샷은 내 실행 결과입니다. AI 가 제안한 내용은 실제 출력으로 다시 확인한 뒤에만 반영했습니다.
 
 ---
 
-## 17. 기능요구사항 대비 결과
+## 18. 기능요구사항 대비 결과
 
 | 요구사항 | 구현 위치 | 달성 |
 |---|---|:---:|
 | 제출 저장소 + 기술 문서<br/>(개요·환경·체크리스트·검증·증거 링크) | 본 README | ✅ |
-| 터미널 조작 로그 | [11-1](#11-1-터미널-조작), `01_terminal.md` | ✅ |
-| 권한 실습 (파일 1, 디렉토리 1) | [11-2](#11-2-권한-변경-파일-1-디렉토리-1), `02_permission.md` | ✅ |
-| Docker 설치 및 기본 점검 | [11-3](#11-3-docker-설치점검-및-운영-명령), `03_docker_check.md`, 스크린샷 2장 | ✅ |
-| Docker 기본 운영 명령 | [11-3](#11-3-docker-설치점검-및-운영-명령), `04_docker_ops.md` | ✅ |
-| 컨테이너 실행 실습<br/>(hello-world, ubuntu, attach/exec) | [11-4](#11-4-ubuntu-컨테이너-진입-및-attach--exec-비교), 스크린샷 3장 | ✅ |
-| 기존 Dockerfile 기반 커스텀 이미지 | [11-5](#11-5-dockerfile-커스텀-이미지-방식-a-웹-서버-베이스--정적-콘텐츠-교체), `app/Dockerfile` | ✅ |
-| 포트 매핑 및 접속 증거 | [11-6](#11-6-포트-매핑-접속), 스크린샷 2장 | ✅ |
-| 포트 충돌 진단 및 해제<br/>(점유 프로세스 확인·해제) | [11-10](#11-10-포트-충돌-진단-및-해제), `10_port_check.md` | ✅ |
-| 바인드 마운트 반영 | [11-7](#11-7-바인드-마운트-변경-반영), `06_bind_mount.md` | ✅ |
-| Docker 볼륨 영속성 | [11-8](#11-8-볼륨-영속성), `07_volume.md` | ✅ |
-| Git 설정 및 GitHub 연동 | [11-9](#11-9-git-설정-및-github-연동), `08_git.md`, 스크린샷 | ✅ |
-| 트러블슈팅 2건 이상 | [15장](#15-실습-중-발생한-오류와-해결) (6건) | ✅ |
-| 보안 및 개인정보 보호 | [19장](#19-보안-유의사항) | ✅ |
-| 보너스 (Compose 1~4) | [12장](#12-보너스-과제) | ✅ |
-| 보너스 (SSH 키) | [12장](#12-보너스-과제), [11-9](#11-9-git-설정-및-github-연동) | ✅ |
+| 터미널 조작 로그 | [12-1](#12-1-터미널-조작), `01_terminal.md` | ✅ |
+| 권한 실습 (파일 1, 디렉토리 1) | [12-2](#12-2-권한-변경-파일-1-디렉토리-1), `02_permission.md` | ✅ |
+| Docker 설치 및 기본 점검 | [12-3](#12-3-docker-설치점검-및-운영-명령), `03_docker_check.md`, 스크린샷 2장 | ✅ |
+| Docker 기본 운영 명령 | [12-3](#12-3-docker-설치점검-및-운영-명령), `04_docker_ops.md` | ✅ |
+| 컨테이너 실행 실습<br/>(hello-world, ubuntu, attach/exec) | [12-4](#12-4-ubuntu-컨테이너-진입-및-attach--exec-비교), 스크린샷 3장 | ✅ |
+| 기존 Dockerfile 기반 커스텀 이미지 | [12-5](#12-5-dockerfile-커스텀-이미지-방식-a-웹-서버-베이스--정적-콘텐츠-교체), `app/Dockerfile` | ✅ |
+| 포트 매핑 및 접속 증거 | [12-6](#12-6-포트-매핑-접속), 스크린샷 2장 | ✅ |
+| 포트 충돌 진단 및 해제<br/>(점유 프로세스 확인·해제) | [12-10](#12-10-포트-충돌-진단-및-해제), `10_port_check.md` | ✅ |
+| 바인드 마운트 반영 | [12-7](#12-7-바인드-마운트-변경-반영), `06_bind_mount.md` | ✅ |
+| Docker 볼륨 영속성 | [12-8](#12-8-볼륨-영속성), `07_volume.md` | ✅ |
+| Git 설정 및 GitHub 연동 | [12-9](#12-9-git-설정-및-github-연동), `08_git.md`, 스크린샷 | ✅ |
+| 트러블슈팅 2건 이상 | [16장](#16-실습-중-발생한-오류와-해결) (6건) | ✅ |
+| 보안 및 개인정보 보호 | [20장](#20-보안-유의사항) | ✅ |
+| 보너스 (Compose 1~4) | [13장](#13-보너스-과제) | ✅ |
+| 보너스 (SSH 키) | [13장](#13-보너스-과제), [12-9](#12-9-git-설정-및-github-연동) | ✅ |
 
-### 17-1. AI 사전평가(네이토) 결과
+### 18-1. AI 사전평가(네이토) 결과
 
 제출 전에 네이토 AI 사전평가로 요구사항 충족 여부를 점검하고, 부족한 항목을 실행 로그로 보완했습니다.
 
 | 시도 | 평가 시각 | 결과 | 비고 |
 |:---:|---|:---:|---|
 | 1 | 2026-11-05 | ✕ | 평가 완료되지 않음 |
-| 2 | 2026-11-05 15:17 | 94% (17 / 18) | #16 FAIL: 포트 점유 프로세스 확인·해제 절차 없음 |
+| 2 | 2026-11-05 15:17 | 94% (17 / 18) | #16 FAIL: 포트 점유 프로세스<br>확인·해제 절차 없음 |
 | 3 | 2026-11-05 15:23 | **100% (18 / 18)** | #16 보완 후 전 항목 통과 |
 
-**보완 내용 (#16):** 포트 충돌을 일부러 만들고 확인 → 원인 찾기 → 해제 → 재확인하는 [`scripts/10_port_check.sh`](scripts/10_port_check.sh)를 작성해 실행하고, 결과 로그 [`10_port_check.md`](docs/logs/10_port_check.md)와 [11-10](#11-10-포트-충돌-진단-및-해제) 설명을 추가했습니다. 같은 시점에 2차 평가의 보완 의견(응답 상태 코드 확인, 755/700 선택 이유, push 증거 링크, 네트워크 네임스페이스, 특수 권한 비트)도 함께 반영했습니다.
+**보완 내용 (#16):** 포트 충돌을 일부러 만들고 확인 → 원인 찾기 → 해제 → 재확인하는 [`scripts/10_port_check.sh`](scripts/10_port_check.sh)를 작성해 실행하고, 결과 로그 [`10_port_check.md`](docs/logs/10_port_check.md)와 [12-10](#12-10-포트-충돌-진단-및-해제) 설명을 추가했습니다. 같은 시점에 2차 평가의 보완 의견(응답 상태 코드 확인, 755/700 선택 이유, push 증거 링크, 네트워크 네임스페이스, 특수 권한 비트)도 함께 반영했습니다.
 
 **3차 종합 평가:** "README.md, scripts/, docs/logs/ 하위에 실행 명령·출력·스크린샷·트러블슈팅이 체계적으로 정리되어 있어 미션 핵심(빌드·포트·볼륨·Git 연동) 증거가 모두 제출되어 있습니다."
 
@@ -779,7 +782,7 @@ bash scripts/10_port_check.sh  # 포트 충돌 진단·해제
 
 ---
 
-## 18. 결론 및 한계점
+## 19. 결론 및 한계점
 
 ### 결론
 
@@ -792,15 +795,15 @@ bash scripts/10_port_check.sh  # 포트 충돌 진단·해제
 
 | 결정 | 이유 | 검토한 다른 방법과 고르지 않은 이유 |
 |---|---|---|
-| 실습을 스크립트로 자동 기록 | 명령·출력을 빠짐없이 남기고 다시 실행해도 같은 결과 | 수동 입력 + 캡처: 누락이 생기고 오래 걸림 (대화형 실습만 수동으로 수행) |
-| 베이스 `nginx:1.27-alpine` | 웹 서버 내장, 작은 이미지 | `ubuntu` + nginx 설치: 이미지가 크고 빌드가 느림 / `httpd`: 가능하지만 nginx 로 충분 |
-| 태그 버전 고정 | 시간이 지나도 같은 이미지 | `latest`: 가리키는 버전이 바뀌어 결과가 달라질 수 있음 |
-| `HEALTHCHECK` 추가 | "켜짐"과 "응답함"을 구분 | 상태 표시만 확인: 서버가 멈춰도 Up 으로 보임 |
-| 호스트 포트 8080·8081 | 개발용으로 흔하고 80 과 충돌 위험이 적음 | 80: 다른 프로그램·권한 문제 가능 |
-| 개발은 바인드 마운트, 데이터는 볼륨 | 수정 즉시 반영 / 컨테이너 삭제 후에도 유지 | 매번 이미지 재빌드: 느림 |
-| Windows 에서 WSL2 사용 | `chmod`·마운트가 리눅스와 동일하게 동작 | Git Bash: 경로 변환·권한 문제 / 가상 머신: 무겁고 설정이 많음 |
-| GitHub 연결은 SSH | push 마다 로그인 불필요, 토큰 노출 위험 감소 | HTTPS + 토큰: WSL 에서 인증 설정이 번거로움 |
-| 로그를 `.md` 로 저장 | GitHub 에서 바로 읽히고 코드 블록으로 명령·출력 구분 | `.txt`: 서식 없음 / 이미지: 검색·복사 불가 |
+| 실습을 스크립트로<br>자동 기록 | 명령·출력을 빠짐없이,<br>다시 실행해도 같은 결과 | 수동 입력 + 캡처:<br>누락이 생기고 오래 걸림<br>(대화형 실습만 수동으로 수행) |
+| 베이스<br>`nginx:1.27-alpine` | 웹 서버 내장,<br>작은 이미지 | `ubuntu` + nginx 설치:<br>이미지가 크고 빌드가 느림<br>`httpd`: 가능하지만 nginx 로 충분 |
+| 태그 버전 고정 | 시간이 지나도<br>같은 이미지 | `latest`: 가리키는 버전이 바뀌어<br>결과가 달라질 수 있음 |
+| `HEALTHCHECK` 추가 | "켜짐"과 "응답함"을 구분 | 상태 표시만 확인:<br>서버가 멈춰도 Up 으로 보임 |
+| 호스트 포트<br>8080·8081 | 개발용으로 흔하고<br>80 과 충돌 위험이 적음 | 80: 다른 프로그램·권한 문제 가능 |
+| 개발은 바인드 마운트,<br>데이터는 볼륨 | 수정 즉시 반영<br>/ 컨테이너 삭제 후에도 유지 | 매번 이미지 재빌드: 느림 |
+| Windows 에서<br>WSL2 사용 | `chmod`·마운트가<br>리눅스와 동일하게 동작 | Git Bash: 경로 변환·권한 문제<br>가상 머신: 무겁고 설정이 많음 |
+| GitHub 연결은 SSH | push 마다 로그인 불필요,<br>토큰 노출 위험 감소 | HTTPS + 토큰:<br>WSL 에서 인증 설정이 번거로움 |
+| 로그를 `.md` 로 저장 | GitHub 에서 바로 읽히고<br>코드 블록으로 명령·출력 구분 | `.txt`: 서식 없음<br>이미지: 검색·복사 불가 |
 
 ### 한계점
 
@@ -809,7 +812,7 @@ bash scripts/10_port_check.sh  # 포트 충돌 진단·해제
 
 ---
 
-## 19. 보안 유의사항
+## 20. 보안 유의사항
 
 - 로그 스크립트는 `ghp_...` 같은 GitHub 토큰과 password/token/secret 줄을 자동으로 `****` 처리한다 ([`scripts/lib.sh`](scripts/lib.sh)).
 - 스크린샷의 GitHub 아이디·이메일은 가렸다. 토큰·비밀번호·인증 코드는 어떤 파일에도 없다.
@@ -821,7 +824,7 @@ bash scripts/10_port_check.sh  # 포트 충돌 진단·해제
 
 ---
 
-## 20. 이미지·도구 출처 및 라이선스 유의사항
+## 21. 이미지·도구 출처 및 라이선스 유의사항
 
 - `hello-world`, `ubuntu`, `nginx`, `alpine` 은 Docker Hub 의 공식 이미지(Docker Official Images)를 사용했다. 각 이미지 안의 소프트웨어는 각자의 라이선스를 따른다 (예: NGINX 는 2-clause BSD 라이선스).
 - 이 저장소에는 이미지 파일 자체를 포함하지 않고, `Dockerfile` 과 실행 명령만 포함한다. 이미지는 실행할 때 Docker Hub 에서 내려받는다.
@@ -829,9 +832,9 @@ bash scripts/10_port_check.sh  # 포트 충돌 진단·해제
 
 ---
 
-## 21. 기타
+## 22. 기타
 
-- 실습 중 발생한 오류와 해결 과정은 [15장](#15-실습-중-발생한-오류와-해결)에 정리했다.
+- 실습 중 발생한 오류와 해결 과정은 [16장](#16-실습-중-발생한-오류와-해결)에 정리했다.
 - AI(Claude)는 스크립트 초안, 오류 원인 분석, 문서 구성에 활용했고, 모든 실행과 결과 확인은 직접 했다.
 - 환경 세팅(Mac / Windows / 공용 PC 정리) 방법은 [`docs/SETUP.md`](docs/SETUP.md) 에 있다.
 - 실행 로그는 스크립트를 다시 실행하면 그 환경 기준으로 새로 만들어진다.
