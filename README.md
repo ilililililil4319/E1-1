@@ -379,7 +379,7 @@ E1-1/
 **설명:** ①·② 의 스크립트 실행(00~07)과 ③ 의 08~10 이 로그를 자동으로 만들고, 대화형 실습과 브라우저 접속(K)은 스크린샷으로 보완한 뒤, 모두 GitHub 에 커밋한다.
 
 ```mermaid
-%%{init: {'flowchart': {'htmlLabels': false}}}%%
+%%{init: {'flowchart': {'htmlLabels': false, 'padding': 24}}}%%
 flowchart TB
     subgraph R1["① 준비"]
         direction LR
@@ -424,7 +424,7 @@ sequenceDiagram
 **설명:** 컨테이너는 호스트와 격리되어 있어서, 바깥과 연결하려면 네트워크는 **포트 매핑**, 파일은 **바인드 마운트** 또는 **볼륨**이라는 "문"을 직접 만들어야 한다.
 
 ```mermaid
-%%{init: {'flowchart': {'htmlLabels': false}}}%%
+%%{init: {'flowchart': {'htmlLabels': false, 'padding': 24}}}%%
 flowchart LR
     subgraph HOST["호스트 (내 컴퓨터)"]
         BR["브라우저 / curl"]
@@ -445,7 +445,7 @@ flowchart LR
     end
     BR -- "-p 8080:80" --> N1
     BR -- "-p 8081:80" --> N2
-    DIR -- "-v 호스트경로:컨테이너경로" --> H3
+    DIR -- "-v 호스트경로:<br/>컨테이너경로" --> H3
     VOL -- "-v mydata:/data" --> D4
 ```
 
